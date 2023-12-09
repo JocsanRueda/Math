@@ -1,0 +1,7 @@
+# Ignorar archivos de compilación
+*.o
+*.out
+*.log
+
+# Ignorar carpetas generadas
+**/media/

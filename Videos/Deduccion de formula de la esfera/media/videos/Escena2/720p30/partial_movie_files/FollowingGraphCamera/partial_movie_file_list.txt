@@ -1,0 +1,4 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena2/720p30/partial_movie_files/FollowingGraphCamera/3242534324_1619683861_2851750338.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena2/720p30/partial_movie_files/FollowingGraphCamera/1759352506_4102648099_3718675040.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena2/720p30/partial_movie_files/FollowingGraphCamera/2815724388_3527355647_3039568689.mp4'

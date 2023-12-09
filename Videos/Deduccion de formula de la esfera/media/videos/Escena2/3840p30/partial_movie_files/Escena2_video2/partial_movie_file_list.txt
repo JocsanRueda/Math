@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena2/3840p30/partial_movie_files/Escena2_video2/3810735297_529867799_223132457.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena2/3840p30/partial_movie_files/Escena2_video2/3092266479_3043939314_3592114071.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena2/3840p30/partial_movie_files/Escena2_video2/2377714753_2285175385_2678426103.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena2/3840p30/partial_movie_files/Escena2_video2/3790160817_329969645_1523470093.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena2/3840p30/partial_movie_files/Escena2_video2/3790160817_3527355647_4047508204.mp4'

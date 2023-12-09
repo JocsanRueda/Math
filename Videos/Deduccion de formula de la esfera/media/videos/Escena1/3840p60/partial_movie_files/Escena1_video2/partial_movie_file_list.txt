@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/3840p60/partial_movie_files/Escena1_video2/110374374_2353361844_223132457.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/3840p60/partial_movie_files/Escena1_video2/2448505981_3669483161_3860366857.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/3840p60/partial_movie_files/Escena1_video2/2448505981_1701797102_223132457.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/3840p60/partial_movie_files/Escena1_video2/2448505981_2145800970_2358810818.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/3840p60/partial_movie_files/Escena1_video2/2448505981_4252779965_2358810818.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/3840p60/partial_movie_files/Escena1_video2/2448505981_4264461922_2358810818.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/3840p60/partial_movie_files/Escena1_video2/2448505981_3569998531_2358810818.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/3840p60/partial_movie_files/Escena1_video2/2448505981_1031843906_1500943418.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/3840p60/partial_movie_files/Escena1_video2/2448505981_2308708082_223132457.mp4'

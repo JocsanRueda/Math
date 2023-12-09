@@ -1,0 +1,13 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena1/720p30/partial_movie_files/Figuras/681012109_3892671430_2907202556.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena1/720p30/partial_movie_files/Figuras/3086385877_1037758731_3951212355.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena1/720p30/partial_movie_files/Figuras/1104245422_872697931_2150955366.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena1/720p30/partial_movie_files/Figuras/978034664_329969645_3150099300.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena1/720p30/partial_movie_files/Figuras/3192620463_1142941715_238023404.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena1/720p30/partial_movie_files/Figuras/418507234_3837998516_1691508581.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena1/720p30/partial_movie_files/Figuras/1816446914_872697931_526283484.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena1/720p30/partial_movie_files/Figuras/2449848555_3915915621_4282981051.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena1/720p30/partial_movie_files/Figuras/311393397_3315967912_3267588667.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena1/720p30/partial_movie_files/Figuras/2647157282_2432256721_1954901247.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena1/720p30/partial_movie_files/Figuras/2076036793_2869332699_3838256644.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena1/720p30/partial_movie_files/Figuras/2513353009_3315967912_3201639095.mp4'

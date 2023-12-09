@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena3/480p15/partial_movie_files/Areas/4266129954_3870837594_223132457.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena3/480p15/partial_movie_files/Areas/1442284246_2671478319_2262534311.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena3/480p15/partial_movie_files/Areas/1442284246_2283554636_642999777.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena3/480p15/partial_movie_files/Areas/1442284246_2873569618_1584599616.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena3/480p15/partial_movie_files/Areas/1442284246_2995635672_1963476350.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena3/480p15/partial_movie_files/Areas/1442284246_3949419395_752834242.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena3/480p15/partial_movie_files/Areas/1442284246_1596849057_685978313.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena3/480p15/partial_movie_files/Areas/1442284246_590079918_2631351337.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena3/480p15/partial_movie_files/Areas/1442284246_3055963167_2754120481.mp4'

@@ -1,0 +1,4 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena6/480p15/partial_movie_files/Escena6/4266129954_200513611_223132457.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena6/480p15/partial_movie_files/Escena6/1442284246_2223759776_2358810818.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena6/480p15/partial_movie_files/Escena6/1442284246_1961528645_2358810818.mp4'

@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/960p30/partial_movie_files/Escena1_prueba_aspecto/1827817945_2353361844_223132457.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/960p30/partial_movie_files/Escena1_prueba_aspecto/1900617986_3669483161_3860366857.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/960p30/partial_movie_files/Escena1_prueba_aspecto/1900617986_1701797102_223132457.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/960p30/partial_movie_files/Escena1_prueba_aspecto/1900617986_2145800970_2358810818.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/960p30/partial_movie_files/Escena1_prueba_aspecto/1900617986_4252779965_2358810818.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/960p30/partial_movie_files/Escena1_prueba_aspecto/1900617986_4264461922_2358810818.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/960p30/partial_movie_files/Escena1_prueba_aspecto/1900617986_3569998531_2358810818.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/960p30/partial_movie_files/Escena1_prueba_aspecto/1900617986_1031843906_1500943418.mp4'
+file 'file:/home/ely/Documentos/Manim/media/videos/Escena1/960p30/partial_movie_files/Escena1_prueba_aspecto/1900617986_2308708082_223132457.mp4'

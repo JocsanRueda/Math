@@ -1,0 +1,6 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena0_1/720p30/partial_movie_files/Escena0_1/274514146_2463535314_3362834651.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena0_1/720p30/partial_movie_files/Escena0_1/2789044632_351576179_245827710.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena0_1/720p30/partial_movie_files/Escena0_1/2789044632_3501510936_1582320068.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena0_1/720p30/partial_movie_files/Escena0_1/2789044632_3177010755_3343828257.mp4'
+file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena0_1/720p30/partial_movie_files/Escena0_1/2789044632_1537754562_3567327499.mp4'
