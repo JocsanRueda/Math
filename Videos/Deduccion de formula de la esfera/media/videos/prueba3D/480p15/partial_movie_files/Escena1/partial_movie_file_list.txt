@@ -1,6 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/home/jocsan/Documentos/Manim/media/videos/prueba3D/480p15/partial_movie_files/Escena1/2274940296_1913269735_2539575604.mp4'
-file 'file:/home/jocsan/Documentos/Manim/media/videos/prueba3D/480p15/partial_movie_files/Escena1/4009717601_2972249562_306047879.mp4'
-file 'file:/home/jocsan/Documentos/Manim/media/videos/prueba3D/480p15/partial_movie_files/Escena1/4009717601_957343386_1246968044.mp4'
-file 'file:/home/jocsan/Documentos/Manim/media/videos/prueba3D/480p15/partial_movie_files/Escena1/4009717601_3428649430_3141036614.mp4'
-file 'file:/home/jocsan/Documentos/Manim/media/videos/prueba3D/480p15/partial_movie_files/Escena1/4009717601_2670531256_2311297087.mp4'

@@ -1,7 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/home/jocsan/Documentos/project/media/media/videos/intro/1080p60/partial_movie_files/ElysMat/1413466013_1265864998_223132457.mp4'
-file 'file:/home/jocsan/Documentos/project/media/media/videos/intro/1080p60/partial_movie_files/ElysMat/1672018281_3850540265_626975429.mp4'
-file 'file:/home/jocsan/Documentos/project/media/media/videos/intro/1080p60/partial_movie_files/ElysMat/1672018281_2465483759_123148677.mp4'
-file 'file:/home/jocsan/Documentos/project/media/media/videos/intro/1080p60/partial_movie_files/ElysMat/1672018281_1076466279_3180076703.mp4'
-file 'file:/home/jocsan/Documentos/project/media/media/videos/intro/1080p60/partial_movie_files/ElysMat/1672018281_2603181687_3137016107.mp4'
-file 'file:/home/jocsan/Documentos/project/media/media/videos/intro/1080p60/partial_movie_files/ElysMat/1672018281_1076466279_3547520947.mp4'

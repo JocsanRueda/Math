@@ -1,7 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena4/720p30/partial_movie_files/Circulos/274514146_3014494196_4191382262.mp4'
-file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena4/720p30/partial_movie_files/Circulos/2789044632_1695994720_1215072152.mp4'
-file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena4/720p30/partial_movie_files/Circulos/2789044632_2548587588_342293458.mp4'
-file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena4/720p30/partial_movie_files/Circulos/2789044632_1577856604_3827033216.mp4'
-file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena4/720p30/partial_movie_files/Circulos/2789044632_1153764156_3753291354.mp4'
-file 'file:/home/jocsan/Documentos/Manim/media/videos/Escena4/720p30/partial_movie_files/Circulos/2789044632_4236221964_356816282.mp4'
