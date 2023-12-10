@@ -5,3 +5,4 @@
 
 # Ignorar carpetas generadas
 **/media/
+**/__pycache__/
