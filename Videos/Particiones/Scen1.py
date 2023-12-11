@@ -58,7 +58,7 @@ class Scen1(Scene):
                 .shift([f2Diagram[0].height * 0.82, 0, 0])
             ),
         ]
-        f4 = MathTex("4=2+2").scale(1.3).shift([0, 1, 0])
+        f4 = MathTex("2+2").scale(1.3).shift([0, 1, 0])
         f4Diagram = [
             (
                 Object_Dots(num_dots=2, color=BLUE)
@@ -71,7 +71,7 @@ class Scen1(Scene):
                 .next_to(f4, DOWN * 2)
             ),
         ]
-        f5 = MathTex("4=3+1").scale(1.3).shift([0, 1, 0])
+        f5 = MathTex("3+1").scale(1.3).shift([0, 1, 0])
         f5Diagram = [
             (
                 Object_Dots(num_dots=1, color=BLUE)
@@ -85,7 +85,7 @@ class Scen1(Scene):
                 .shift([f2Diagram[0].height * 0.82 * 2, 0, 0])
             ),
         ]
-        f6 = MathTex("4=4").scale(1.3).shift([0, 1, 0])
+        f6 = MathTex("4").scale(1.3).shift([0, 1, 0])
         f6Diagram = [
             (
                 Object_Dots(num_dots=4, color=BLUE)
