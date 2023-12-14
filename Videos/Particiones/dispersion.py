@@ -1,38 +1,26 @@
+import seaborn as sns
 import matplotlib.pyplot as plt
-import numpy as np
 
-# Funciones proporcionadas
-def partition(n):
-    if n == 0:
-        return 1
+# Configurar el estilo de Seaborn
+sns.set_theme(style="whitegrid")
 
-    partitions = [0] * (n + 1)
-    partitions[0] = 1
-
-    for i in range(1, n + 1):
-        for j in range(i, n + 1):
-            partitions[j] += partitions[j - i]
-
-    return partitions[n]
-
-# Generar valores para x y y utilizando las funciones
-x_values = np.arange(1, 80)
-y_true_values = [partition(x) for x in x_values]
-y_measured_values = [1 / (4 * x * np.sqrt(3)) * np.exp(np.pi * np.sqrt(2 / 3 * x)) for x in x_values]
-
-# Configuración de estilo similar a Manim
-plt.style.use('dark_background')
+# Cargar el conjunto de datos de diamantes de ejemplo
+diamonds = sns.load_dataset("diamonds")
 
 # Crear el gráfico de dispersión
-plt.scatter(x_values, y_true_values, label='Valor Real', color='blue', marker='o')
-plt.scatter(x_values, y_measured_values, label='Valor Medido', color='red', marker='p')
+f, ax = plt.subplots(figsize=(6.5, 6.5))
+sns.despine(f, left=True, bottom=True)
 
-# Personalizar el gráfico
-plt.title('Gráfico de Dispersión')
-plt.xlabel('Eje X (Valores Enteros)')
-plt.ylabel('Valores de y')
-plt.legend()
-plt.grid(True)
+# Definir el orden de claridad
+clarity_ranking = ["I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1", "IF"]
+
+# Crear el gráfico de dispersión
+sns.scatterplot(x="carat", y="price",
+                hue="clarity", size="depth",
+                palette="ch:r=-.2,d=.3_r",
+                hue_order=clarity_ranking,
+                sizes=(1, 8), linewidth=0,
+                data=diamonds, ax=ax)
 
 # Mostrar el gráfico
 plt.show()
