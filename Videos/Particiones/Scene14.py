@@ -32,16 +32,18 @@ class Scene14(Scene):
             include_outer_lines=True,
             line_config={"stroke_width": 1.6, "color": TEAL},
         ).scale(0.55)
-        form_error = MathTex(
-            r"Error Relativo = \left| \frac{\text{Valor Verdadero} - \text{Valor Aproximado}}{\text{Valor Verdadero}} \right| \times 100\%"
-        ).scale(0.7)
+        form_error = (
+            MathTex(
+                r"Error Relativo = \left| \frac{\text{Valor Verdadero} - \text{Valor Aproximado}}{\text{Valor Verdadero}} \right| \times 100\%"
+            )
+            .scale(0.7)
+            .to_edge(DOWN)
+        )
 
         self.play(Write(form))
         self.wait()
+        
         self.play(form.animate.to_edge(UP))
+        self.play(table.create())
         self.play(Write(form_error))
         self.wait()
-
-
-
-    
