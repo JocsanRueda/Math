@@ -37,7 +37,7 @@ def generate_ferrers_diagram(scene, partition):
 # Ejemplo de uso
 class FerrersDiagramExample(Scene):
     def construct(self):
-        number = 20    
+        number = 4
         partition = partitions(number)
 
         diagrams = []
@@ -48,13 +48,15 @@ class FerrersDiagramExample(Scene):
                 if n > 0:
                     temp.next_to(diagrams[n - 1], RIGHT)
                 else:
-                    temp.to_corner(LEFT + UP)
+                    temp.to_edge(LEFT)
             else:
                 # A partir de la 11ª partición, se coloca en la siguiente fila
                 row_index, col_index = divmod(n - 10, 10)
                 if col_index == 0:
                     # Salto de línea después de 10 elementos
-                    temp.next_to(diagrams[(row_index - 1) * 10], DOWN).align_to(diagrams[(row_index - 1) * 10], LEFT)
+                    temp.next_to(diagrams[(row_index - 1) * 10], DOWN).align_to(
+                        diagrams[(row_index - 1) * 10], LEFT
+                    )
                 else:
                     # Los siguientes 9 elementos se colocan uno al lado del otro
                     temp.next_to(diagrams[n - 1], RIGHT)
@@ -70,7 +72,7 @@ def partitions(n, i=1):
     if n == 0:
         return [[]]
     result = []
-    while i <= n:   
+    while i <= n:
         for p in partitions(n - i, i):
             result.append([i] + p)
         i += 1

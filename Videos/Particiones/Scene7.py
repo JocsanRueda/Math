@@ -10,6 +10,7 @@ class Scene6(Scene):
             [[1, 2, 3, 4, 5, "..."], [1, 5, 12, 22, 30, "..."]],
             row_labels=[MathTex("m"), MathTex(r"\frac{m}{2} (3m-1)")],
             include_outer_lines=True,
+            line_config={"stroke_width": 1.6, "color": TEAL},
         )
 
         p0 = Dot()
@@ -67,41 +68,50 @@ class Scene6(Scene):
             .shift([-0.28, 0, 0])
         )
         polygon4.add(polygon3Copy)
-     
+
         cell1 = table.get_entries((2, 2))
         cell2 = table.get_entries((2, 3))
         cell3 = table.get_entries((2, 4))
         cell4 = table.get_entries((2, 5))
         cell5 = table.get_entries((2, 6))
 
-        #self.play(table.create())
+        self.play(table.create())
 
         self.play(table.animate.scale(0.6))
 
         self.play(table.animate.move_to(UP * 3))
 
-        self.play(Create(t1), cell1.animate.set_color(YELLOW))
+        self.play(Create(t1), cell1.animate.set_color(BLUE))
 
         self.play(t1.animate.shift(-7 * RIGHT))
 
         self.play(
-           Create(t2), cell1.animate.set_color(WHITE), cell2.animate.set_color(YELLOW)
-       )
+            Create(t2), cell1.animate.set_color(WHITE), cell2.animate.set_color(BLUE)
+        )
 
         self.play(t2.animate.shift(-5.5 * RIGHT))
 
         self.play(
-            Create(t3), cell2.animate.set_color(WHITE), cell3.animate.set_color(YELLOW)
+            Create(t3), cell2.animate.set_color(WHITE), cell3.animate.set_color(BLUE)
         )
         self.play(t3.animate.shift(-2.9 * RIGHT))
 
         self.play(
-            Create(t4), cell3.animate.set_color(WHITE), cell4.animate.set_color(YELLOW)
+            Create(t4), cell3.animate.set_color(WHITE), cell4.animate.set_color(BLUE)
         )
         self.play(t4.animate.shift(-1.5 * RIGHT))
 
         self.play(
-            Create(t5), cell4.animate.set_color(WHITE), cell5.animate.set_color(YELLOW)
+            Create(t5), cell4.animate.set_color(WHITE), cell5.animate.set_color(BLUE)
+        )
+
+        self.play(
+            Uncreate(t5),
+            Uncreate(t4),
+            Uncreate(t3),
+            Uncreate(t2),
+            Uncreate(t1),
+            Uncreate(table)
         )
 
         self.wait(1)

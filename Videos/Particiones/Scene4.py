@@ -27,7 +27,7 @@ class Scen4(Scene):
 
         form_partiton = MathTex("p(n)=?").move_to(form_cos.get_center())
 
-        self.add(number_plane)
+        self.play(Create(number_plane))
         self.play(Create(cos_func), Write(form_cos))
         self.wait()
         self.play(Transform(form_cos, form_tan), Transform(cos_func, tan_func))
@@ -36,5 +36,6 @@ class Scen4(Scene):
         self.wait()
         self.play(Uncreate(form_cos), Uncreate(cos_func))
         self.play(Write(form_partiton))
+        self.play(Uncreate(number_plane), form_partiton.animate.move_to(ORIGIN))
 
         self.wait()

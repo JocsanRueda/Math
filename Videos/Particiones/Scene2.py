@@ -14,7 +14,8 @@ class Scen1(Scene):
             col_labels=[MathTex('n'),MathTex('p(n)')],
 
             include_outer_lines=True,
-        )
+            line_config={"stroke_width": 1.6, "color": TEAL}
+        ).scale(0.8)
  
  
         self.play(table.create())

@@ -10,12 +10,12 @@ class Scene6(Scene):
 
         partitionForm = MathTex(
             r"p(n)=(-1)\sum_{m=1}^{\infty }(-1)^m[p(n-w(m))+p(n-w(-m))] ,"
-        )
+        ).move_to(UP)
 
         wForm = MathTex(r"w(m)=\frac{m}{2}(3m-1), m\geq 1").next_to(partitionForm, DOWN)
 
         sigmaFunction = MathTex(
-            r"\sum _{m=1}^{\infty }f(m)=f(1)+f(2)+f(3)+f(4)+\ldots ."
+            r"\sum _{m=1}^{\infty }f(m)=f(1)+f(2)+f(3)+f(4)+\ldots"
         ).move_to(DOWN)
 
         # Crear formula de particion
@@ -32,8 +32,14 @@ class Scene6(Scene):
 
         self.wait()
         # Crear simbolo de
-        self.play(Uncreate(sigma), color_range.animate.set_color(WHITE))
+        self.play(Uncreate(sigma))
         self.play(Write(sigmaFunction))
-        self.play(Uncreate(sigmaFunction))
-        self.play(wForm.animate.move_to([0, 0, 0]))
+        self.wait()
+        self.play(Uncreate(sigmaFunction), color_range.animate.set_color(WHITE))
+        self.wait()
+
+        self.play(wForm.animate.move_to(ORIGIN))
+        self.wait()
+
+        self.play(Uncreate(wForm),Uncreate(partitionForm))
         self.wait()
