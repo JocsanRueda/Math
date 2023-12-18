@@ -34,5 +34,6 @@ class Scene3(MovingCameraScene):
 
         self.play(Restore(self.camera.frame))
         self.play(Uncreate(numero2), Write(tiempo))
-        self.play(Uncreate(tiempo))
         self.wait(2)
+        self.play(Uncreate(tiempo))
+        self.wait()
