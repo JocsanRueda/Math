@@ -2,7 +2,9 @@
 *.o
 *.out
 *.log
+*.pyc
 
 # Ignorar carpetas generadas
 **/media/
 **/__pycache__/
+**/Kden/

@@ -83,7 +83,7 @@ class Scene6(Scene):
 
         self.play(Create(t1), cell1.animate.set_color(BLUE))
 
-        self.play(t1.animate.shift(-7 * RIGHT))
+        self.play(t1.animate.shift(-6.85 * RIGHT))
 
         self.play(
             Create(t2), cell1.animate.set_color(WHITE), cell2.animate.set_color(BLUE)
