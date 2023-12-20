@@ -4,6 +4,7 @@
 *.log
 *.pyc
 *.kdenlive
+*.ogg
 
 # Ignorar carpetas generadas
 **/media/
