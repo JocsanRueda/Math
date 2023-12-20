@@ -3,6 +3,7 @@
 *.out
 *.log
 *.pyc
+*.kdenlive
 
 # Ignorar carpetas generadas
 **/media/

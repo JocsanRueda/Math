@@ -62,42 +62,34 @@ class Object_Dots(VGroup):
 
 
 # Escena que muestra la primera parte del video
-class Scen18(Scene):
+class Scen18(MovingCameraScene):
     def construct(self):
-        variables = (
-            VGroup(MathTex("A"), MathTex("R"), MathTex("r"), MathTex("d"))
-            .arrange_submobjects()
-            .shift(UP)
-        )
+        self.camera.frame.save_state()
 
-        number = 15
+        number = 27
 
         partition = partitions(number)
         partition = [list(reversed(p)) for p in partition]
         diagrams = []
         diagramObject = []
-        #70
-        columnas = 20
-        #0.12
-        space=0.65
-        for n in range(len(partition)):
+        # 70
+        columnas = 70
+        # 0.12
+        space = 0.13
+        for n in range(round(len(partition)*1)):
             temp = MathTex("+").scale(0.2).set_opacity(0)
-            #0.08
+            # 0.08
             diagramObject.append(
-                generate_ferrers_diagram(self, partition[n]).scale(0.33)
+                generate_ferrers_diagram(self, partition[n]).scale(0.055)
             )
-
-          
 
             if n < columnas:
                 # Las primeras 10 particiones se colocan en la misma fila
                 if n > 0:
-                    temp.next_to(
-                        diagrams[n - 1], RIGHT, buff=space
-                    )
-                #3.3
+                    temp.next_to(diagrams[n - 1], RIGHT, buff=space)
+                # 3.3
                 else:
-                    temp.move_to(LEFT*6.8).shift(UP*2.4)
+                    temp.move_to(LEFT * 6.8).shift(UP * 3.15)
 
             else:
                 # A partir de la 11ª partición, se coloca en la siguiente fila
@@ -110,15 +102,13 @@ class Scen18(Scene):
                     temp.next_to(
                         diagrams[n - columnas],
                         DOWN,
-                        buff=space,
+                        buff=space*1.7,
                     )
 
                 else:
                     # Los siguientes 9 elementos se colocan uno al lado del otro
 
-                    temp.next_to(
-                        diagrams[n - 1], RIGHT, buff=space
-                    )
+                    temp.next_to(diagrams[n - 1], RIGHT, buff=space)
 
             diagrams.append(temp)
 
@@ -126,7 +116,12 @@ class Scen18(Scene):
             diagrams[n].add(diagramObject[n].next_to(diagrams[n], UP))
 
         group = VGroup(*diagrams)
-        formPartition = MathTex(r"p(4)=5").to_edge(UP)
-        self.play(Create(group,run_time=len(group)*0.2))
+       
+        #0.08
+        self.camera.frame.scale(0.08).move_to(group[0])
+        #self.add(group)
+        self.play(Create(group),Restore(self.camera.frame),run_time=len(group)*0.005)
+      
+    
         self.wait()
-        
+ 
