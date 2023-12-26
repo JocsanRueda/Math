@@ -9,7 +9,9 @@ class Scen4(Scene):
                 "stroke_color": BLUE,
                 "stroke_width": 2,
                 "stroke_opacity": 0.4,
-            }
+            },
+            x_axis_config={"numbers_to_include": np.arange(-10, 10, 1)},
+            y_axis_config={"numbers_to_include": np.arange(-10, 10, 1)},
         )
 
         cos_func = FunctionGraph(
@@ -17,8 +19,31 @@ class Scen4(Scene):
             color=BLUE,
         )
 
+        def smooth_tan_parametric(t):
+            return np.array([t, np.tan(t), 0])
+
+        t = 0.1
+
+        tan_func = VGroup(
+            ParametricFunction(
+                smooth_tan_parametric, t_range=[(-5 * np.pi / 2)+t, (-3 * np.pi / 2) - t]
+            ).set_color(TEAL),
+            ParametricFunction(
+                smooth_tan_parametric, t_range=[-3*np.pi / 2+t, -1*np.pi / 2 - t]
+            ).set_color(TEAL),
+            ParametricFunction(
+                smooth_tan_parametric, t_range=[ -1*np.pi / 2 + t,np.pi / 2-t]
+            ).set_color(TEAL),
+            ParametricFunction(
+                smooth_tan_parametric, t_range=[ np.pi / 2+t,3 * np.pi / 2-t]
+            ).set_color(TEAL),
+            ParametricFunction(
+                smooth_tan_parametric, t_range=[  3*np.pi / 2+t,5 * np.pi / 2-t]
+            ).set_color(TEAL)
+        )
+
         form_cos = MathTex("f(x)= cos(x)").next_to(cos_func, UP).shift([-2, 0, 0])
-        tan_func = FunctionGraph(lambda t: np.tan(t), color=TEAL)
+
         form_tan = MathTex("f(x)=tan(x)")
         form_tan.move_to(form_cos.get_center()).shift([-1.5, 0, 0])
 
@@ -39,3 +64,4 @@ class Scen4(Scene):
         self.play(Uncreate(number_plane), form_partiton.animate.move_to(ORIGIN))
 
         self.wait()
+        

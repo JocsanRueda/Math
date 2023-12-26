@@ -8,7 +8,7 @@ class Object_Circles(VGroup):
         )
 
 
-class Scene9(Scene):
+class Scene10(Scene):
     def construct(self):
         circle1 = Circle(radius=0.2, color=BLUE, fill_opacity=1)
         circle2 = Circle(radius=0.2, color=BLUE, fill_opacity=1).next_to(circle1, LEFT)
@@ -48,6 +48,7 @@ class Scene9(Scene):
         self.play(Create(circles))
         self.play(circles.animate.to_corner(RIGHT + UP))
         self.play(Create(box1))
+        self.wait()
         self.play(box1.animate.to_edge(UP))
 
         box2 = box1.copy()
@@ -114,7 +115,7 @@ class Scene9(Scene):
         )
 
         text6 = MathTex(r"p(4)=5").to_edge(DOWN)
-
+        self.wait()
         self.play(Write(text6))
 
         self.wait()

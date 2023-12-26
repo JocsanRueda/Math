@@ -31,8 +31,9 @@ class Scene9(Scene):
         self.play(Create(circles))
         self.play(circles.animate.to_corner(RIGHT + UP))
         self.play(Create(box1))
+        self.wait()
         self.play(box1.animate.to_edge(UP))
-
+        self.wait()
         box2 = box1.copy()
        
 
@@ -71,7 +72,7 @@ class Scene9(Scene):
         )
 
         text4 = MathTex(r"p(3)=3").to_edge(DOWN)
-
-        self.play(Write(text4))
-
         self.wait()
+        self.play(Write(text4))
+        self.wait()
+        

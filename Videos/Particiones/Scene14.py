@@ -1,8 +1,6 @@
 from manim import *
 
 
-
-
 class Scene14(Scene):
     def construct(self):
         form = MathTex(
@@ -32,11 +30,11 @@ class Scene14(Scene):
                 MathTex("n"),
                 MathTex(r"p(n)"),
                 MathTex(r"P(n)"),
-                MathTex("Error \%"),
+                MathTex("Error \hspace{0.1cm}\%"),
             ],
             include_outer_lines=True,
             line_config={"stroke_width": 1.6, "color": TEAL},
-        ).scale(0.55)
+        ).scale(0.54)
         form_error = MathTex(
             r"Error Relativo = \left| \frac{\text{Valor Verdadero} - \text{Valor Aproximado}}{\text{Valor Verdadero}} \right| \times 100\%"
         ).scale(0.7)
@@ -87,9 +85,15 @@ class Scene14(Scene):
             Uncreate(text2Copy),
             Uncreate(result),
         )
-
+        copyForm = form[0][0:9].copy()
         self.play(Write(form))
         self.wait()
+        self.play(
+            copyForm.animate.next_to(form, DOWN, buff=0.7).set_color(BLUE).scale(1.3)
+        )
+        self.wait()
+
+        self.play(Uncreate(copyForm))
 
         self.play(form.animate.to_edge(UP))
         self.play(table.create())

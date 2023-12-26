@@ -3,16 +3,42 @@ from manim import *
 # Creamos figuras y se seccionan con plano
 
 
+class Scene15_2(Scene):
+    def construct(self):
+        form = (
+            MathTex(
+                r"p(n) = \frac{1}{2\pi\sqrt{2}} \sum_{k \le \alpha\sqrt{n}} A_{k}(n) \sqrt{k} \frac{d}{dn} \Bigg\{\frac{e^{\frac{\pi}{k} \sqrt{\frac{2}{3}(n-1/24)}\,}}{\sqrt{n-1/24}} \Bigg\} + O\big(n^{-1/4}\big),"
+            )
+            .to_edge(UP)
+            .scale(0.7)
+        )
+        form2 = (
+            MathTex(
+                r"A_{k}(n) = \sum_{\begin{smallmatrix}0 \le h < k\\ \operatorname{mcd}(h,k)=1\end{smallmatrix}}\omega_{h,k} \cdot e^{{-2\pi} i\frac{h}{k} n},"
+            )
+            .next_to(form, DOWN,buff=0.8)
+            .scale(0.7)
+        )
+        form3 = (
+            MathTex(
+                r"\omega_{h,k} = e^{ \pi i \sum_{\mu=1}^{k-1} \frac{\mu}{k} \Big( \frac{h\mu}{k} – \Big[ \frac{h\mu}{k} \Big] – \frac{1}{2} \Big)} ,"
+            )
+            .next_to(form2, DOWN,buff=0.8)
+            .scale(0.7)
+        )
+
+        form4 = MathTex(r"\alpha \in \mathbb{R}^+").next_to(form3,DOWN,buff=0.8).scale(0.6)
+
+        self.play(Create(form),Create(form2),Create(form3),Create(form4))
+        self.wait(1.5)
+        
+
+
 class Scene15(Scene):
     def construct(self):
         form = MathTex(
-            r"p(n) = \frac{1}{2 \pi \sqrt{2}} \frac{d}{dn}\frac{e^{\pi \sqrt{\frac{2}{3} \left(n-\frac{1}{24}\right)}}}{\sqrt{n-\frac{1}{24}}}+ O\big(e^{k \sqrt{n}}\big)"
+            r"P(n) = \frac{1}{2 \pi \sqrt{2}} \frac{d}{dn}\frac{e^{\pi \sqrt{\frac{2}{3} \left(n-\frac{1}{24}\right)}}}{\sqrt{n-\frac{1}{24}}}"
         )
-        form2 = MathTex(r"p(n)= Q(n) + O\big(e^{k \sqrt{n}}\big)")
-
-        form3 = MathTex(
-            r"= \frac{1}{2 \pi \sqrt{2}} \frac{d}{dn}\frac{e^{\pi \sqrt{\frac{2}{3} \left(n-\frac{1}{24}\right)}}}{\sqrt{n-\frac{1}{24}}}"
-        ).move_to(DOWN)
 
         table = (
             MathTable(
@@ -32,13 +58,13 @@ class Scene15(Scene):
                 row_labels=[
                     MathTex("n"),
                     MathTex(r"p(n)"),
-                    MathTex(r"Q(n)"),
-                    MathTex("Error \%"),
+                    MathTex(r"P(n)"),
+                    MathTex("Error \hspace{0.1cm}\%"),
                 ],
                 include_outer_lines=True,
                 line_config={"stroke_width": 1.6, "color": TEAL},
             )
-            .scale(0.55)
+            .scale(0.54)
             .shift([0, -1.3, 0])
         )
         form_error = (
@@ -50,18 +76,9 @@ class Scene15(Scene):
         )
 
         self.play(Write(form))
-
+        self.wait()
         self.play(form.animate.to_edge(UP))
-        self.play(Write(form2))
-        self.play(form2.animate.next_to(form, DOWN))
-        form4 = form2[0][5:9].copy()
 
-        self.play(form4.animate.move_to(DOWN).shift([-3, 0, 0]))
-        form3.next_to(form4, RIGHT, buff=0.1)
-        form4.add(form3)
-        self.play(Write(form3))
-        self.play(Uncreate(form), Uncreate(form2))
-        self.play(form4.animate.to_edge(UP))
         self.play(table.create())
         self.wait()
 

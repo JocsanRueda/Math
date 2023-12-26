@@ -17,7 +17,6 @@ class Scene8(Scene):
             )
             .scale(0.69)
             .next_to(partitionForm1, DOWN, buff=0.5)
-            
         )
         partitionForm3 = (
             MathTex(
@@ -25,7 +24,6 @@ class Scene8(Scene):
             )
             .scale(0.69)
             .next_to(partitionForm2, DOWN)
-            
         )
         partitionForm4 = (
             MathTex(
@@ -33,7 +31,6 @@ class Scene8(Scene):
             )
             .scale(0.69)
             .next_to(partitionForm3, DOWN)
-            
         )
         partitionForm5 = (
             MathTex(
@@ -41,22 +38,19 @@ class Scene8(Scene):
             )
             .scale(0.69)
             .next_to(partitionForm4, DOWN)
-            
         )
 
         partitionForm6 = (
             MathTex(r"p(4)=(-1)[(-1)[p(3) + p(2)] + 0+\ldots\right]")
             .scale(0.69)
             .next_to(partitionForm5, DOWN)
-            
         )
         partitionForm7 = (
-            MathTex(r"p(4)=[p(3) + p(2)]")
-            .scale(0.69)
-            .next_to(partitionForm6, DOWN)
-            
+            MathTex(r"p(4)=[p(3) + p(2)]").scale(0.69).next_to(partitionForm6, DOWN)
         )
-        partitionForm8 = MathTex(r"p(4)=3 + 2").scale(0.69).next_to(partitionForm7, DOWN)
+        partitionForm8 = (
+            MathTex(r"p(4)=3 + 2").scale(0.69).next_to(partitionForm7, DOWN)
+        )
         partitionForm9 = MathTex(r"p(4)=5").scale(0.69).next_to(partitionForm8, DOWN)
         box = SurroundingRectangle(partitionForm9, color=BLUE)
 
@@ -91,5 +85,7 @@ class Scene8(Scene):
             Uncreate(partitionForm4),
             Uncreate(partitionForm3),
             Uncreate(partitionForm2),
-            Uncreate(partitionForm1),
+            partitionForm1.animate.move_to(ORIGIN),
         )
+        self.wait()
+        self.play(Uncreate(partitionForm1))
