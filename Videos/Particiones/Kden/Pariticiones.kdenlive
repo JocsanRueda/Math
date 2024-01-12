@@ -3146,6 +3146,16 @@
   <property name="set.test_image">0</property>
   <property name="kdenlive:id">5</property>
   <property name="warp_pitch">0</property>
+  <property name="meta.media.frame_rate_num">60</property>
+  <property name="meta.media.frame_rate_den">1</property>
+  <property name="meta.media.colorspace">709</property>
+  <property name="meta.media.color_trc">2</property>
+  <property name="meta.media.has_b_frames">2</property>
+  <property name="meta.media.width">3840</property>
+  <property name="meta.media.height">2160</property>
+  <property name="meta.media.color_range">mpeg</property>
+  <property name="meta.media.top_field_first">0</property>
+  <property name="meta.media.progressive">1</property>
  </producer>
  <producer id="producer6" in="00:00:00.000" out="00:01:26.067">
   <property name="length">5165</property>
@@ -7801,8 +7811,8 @@
   <property name="kdenlive:sequenceproperties.documentuuid">{8b4a8e44-24ab-4ea9-bcba-0484aab68d73}</property>
   <property name="kdenlive:sequenceproperties.hasAudio">1</property>
   <property name="kdenlive:sequenceproperties.hasVideo">1</property>
-  <property name="kdenlive:sequenceproperties.position">3087</property>
-  <property name="kdenlive:sequenceproperties.scrollPos">3503</property>
+  <property name="kdenlive:sequenceproperties.position">734</property>
+  <property name="kdenlive:sequenceproperties.scrollPos">0</property>
   <property name="kdenlive:sequenceproperties.tracks">4</property>
   <property name="kdenlive:sequenceproperties.tracksCount">4</property>
   <property name="kdenlive:sequenceproperties.verticalzoom">1</property>
@@ -8743,7 +8753,7 @@
   <property name="kdenlive:docproperties.rendertcoverlay">0</property>
   <property name="kdenlive:docproperties.rendertctype">-1</property>
   <property name="kdenlive:docproperties.rendertwopass">0</property>
-  <property name="kdenlive:docproperties.renderurl">/home/ely/Vídeos/Pariticiones.mp4</property>
+  <property name="kdenlive:docproperties.renderurl">/home/ely/Vídeos/Pariticiones_final.mp4</property>
   <property name="kdenlive:docproperties.seekOffset">30000</property>
   <property name="kdenlive:docproperties.uuid">{8b4a8e44-24ab-4ea9-bcba-0484aab68d73}</property>
   <property name="kdenlive:docproperties.version">1.1</property>
