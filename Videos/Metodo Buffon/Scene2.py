@@ -119,24 +119,30 @@ class Scene2(MovingCameraScene):
             .shift([0.6, 0, 0])
         )
         # angulo
+        
         angulo = Angle(
-            linea_guia, Line(pi, Dot([0, 0, 0])), radius=0.2, stroke_width=1, color=BLUE
+            linea_guia,
+            Line(Dot(ORIGIN), Dot([0, -1, 0])),
+            quadrant=(1, -1),
+            radius=0.2,
+            stroke_width=1,
+            color=BLUE,
         )
         # simbolo alfa
         f5 = MathTex(r"\alpha").next_to(angulo, UP, buff=0.01).scale(0.35)
         # acotacion de alfa
         f6 = (
-            MathTex(r"0\leqslant \alpha \leqslant \frac{\pi}{2}")
-            .scale(0.28)
+            MathTex(r"0\leqslant Min (\alpha,\theta) \leqslant \frac{\pi}{2}")
+            .scale(0.2)
             .next_to(f1, RIGHT, buff=0.7)
-            .shift([0.2, 0.5, 0])
+            .shift([0.1, 0.5, 0])
         )
         # angulo theta
         angulo2 = Angle(
-            Line(pi, Dot([0, 0, 0])),
+            Line(Dot(ORIGIN), Dot([0, -1, 0])),
             linea_guia,
             radius=0.2,
-            quadrant=(-1, 1),
+            quadrant=(1, 1),
             stroke_width=1,
             color=YELLOW,
         )
@@ -168,11 +174,14 @@ class Scene2(MovingCameraScene):
             puntos = obj.get_all_points()[0]
             x2 = line_length * math.cos(anguloTracker.get_value() * DEGREES) + puntos[0]
             y2 = line_length * math.sin(anguloTracker.get_value() * DEGREES) + puntos[1]
+
             obj.put_start_and_end_on([puntos[0], puntos[1], 0], [x2, y2, 0])
+
             angulo.become(
                 Angle(
-                    obj,
-                    Line(pi, Dot([0, 0, 0])),
+                    linea_guia,
+                    Line(Dot(ORIGIN), Dot([0, -1, 0])),
+                    quadrant=(1, -1),
                     radius=0.2,
                     stroke_width=1,
                     color=BLUE,
@@ -180,67 +189,69 @@ class Scene2(MovingCameraScene):
             )
             angulo2.become(
                 Angle(
-                    Line(pi, Dot([0, 0, 0])),
+                    Line(Dot(ORIGIN), Dot([0, -1, 0])),
                     linea_guia,
                     radius=0.2,
-                    quadrant=(-1, 1),
+                    quadrant=(1, 1),
                     stroke_width=1,
                     color=YELLOW,
                 )
             )
             f5.become(
                 MathTex(
-                    r"\alpha = " + str(int(90-anguloTracker.get_value())) + r"^{\circ}"
+                    r"\alpha = "
+                    + str(int(90 - anguloTracker.get_value()))
+                    + r"^{\circ}"
                 )
-                .next_to(rectangulos[3], RIGHT, buff=-0.4)
+                .next_to(angulo, UP, buff=0.001)
                 .scale(0.2)
             )
             f7.become(
                 MathTex(
-                    r"\theta = " + str(int(90+anguloTracker.get_value())) + r"^{\circ}"
+                    r"\theta = "
+                    + str(math.ceil(90 + anguloTracker.get_value()))
+                    + r"^{\circ}"
                 )
-                .next_to(f5, DOWN)
+                .next_to(angulo2, DOWN, buff=0.001)
                 .scale(0.2)
             )
 
-        # se dibuja el largo de las lineas
-        self.play(Create(distancia_lineas))
-        # se muestra d
-        self.play(Write(f3))
+        # # se dibuja el largo de las lineas
+        # self.play(Create(distancia_lineas))
+        # # se muestra d
+        # self.play(Write(f3))
 
-        # se muestra k y su brace
-        self.play(FadeIn(b1), Write(b1Text))
-        # se escribe la restricion k<=d
-        self.play(Write(f4))
-        self.wait()
+        # # se muestra k y su brace
+        # self.play(FadeIn(b1), Write(b1Text))
+        # # se escribe la restricion k<=d
+        # self.play(Write(f4))
+        # self.wait()
 
-        # se borran los elementos creados anteriorment
-        self.play(
-            Uncreate(distancia_lineas),
-            Uncreate(f3),
-            FadeOut(b1),
-            Uncreate(b1Text),
-            Uncreate(f4),
-        )
-        self.wait()
-        # se muestra la distancia x
-        self.play(Create(linea_interseccion), Write(f1), Create(pi), Create(centro))
-        linea_interseccion.add_updater(mov_point)
-        self.play(linea_guia.animate.shift([0.1, 0, 0]))
-        self.play(linea_guia.animate.shift([-0.8, 0, 0]))
-        self.play(linea_guia.animate.shift([0.7, 0, 0]), Write(f2))
-        linea_interseccion.remove_updater(mov_point)
+        # # se borran los elementos creados anteriorment
+        # self.play(
+        #     Uncreate(distancia_lineas),
+        #     Uncreate(f3),
+        #     FadeOut(b1),
+        #     Uncreate(b1Text),
+        #     Uncreate(f4),
+        # )
+        # self.wait()
+        # # se muestra la distancia x
+        # self.play(Create(linea_interseccion), Write(f1), Create(pi), Create(centro))
+        # linea_interseccion.add_updater(mov_point)
+        # self.play(linea_guia.animate.shift([0.1, 0, 0]))
+        # self.play(linea_guia.animate.shift([-0.8, 0, 0]))
+        # self.play(linea_guia.animate.shift([0.7, 0, 0]), Write(f2))
+        # linea_interseccion.remove_updater(mov_point)
 
-        self.play(Uncreate(pi),Uncreate(centro),Uncreate(linea_interseccion),Uncreate(f1),Uncreate(f2))
+        # self.play(Uncreate(pi),Uncreate(centro),Uncreate(linea_interseccion),Uncreate(f1),Uncreate(f2))
 
         self.play(Create(angulo), Write(f5), Create(angulo2), Write(f7))
 
-        self.play(
-            f5.animate.next_to(rectangulos[3], RIGHT, buff=0.1),
-            f7.animate.next_to(rectangulos[3], RIGHT, buff=0.1).shift([0, -0.7, 0]),
-        )
         linea_guia.add_updater(mov_point_angle)
         self.play(anguloTracker.animate.set_value(anguloTracker.get_value() - 30))
-        self.play(anguloTracker.animate.set_value(anguloTracker.get_value() + 90))
-        self.play(anguloTracker.animate.set_value(anguloTracker.get_value() -60))
+        self.play(anguloTracker.animate.set_value(anguloTracker.get_value() + 89.99999))
+        self.play(anguloTracker.animate.set_value(anguloTracker.get_value() - 59.99999))
+        self.play(Write(f6))
+
         self.wait()
