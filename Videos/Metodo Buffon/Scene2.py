@@ -68,7 +68,7 @@ class Scene2(MovingCameraScene):
         )
         angle = 30 * DEGREES
         # -0.1 valor original
-        x = 0
+        x = -0.1
         y = -0.5
         x2 = line_length * math.cos(angle) + x
         y2 = line_length * math.sin(angle) + y
@@ -83,12 +83,12 @@ class Scene2(MovingCameraScene):
         b1Text = b1.get_tex("k").scale(0.4).shift([-0.25, 0.3, 0])
 
         puntos = linea_guia.get_all_points()
-        centro = Dot(puntos_equidistantes(puntos[0], puntos[-1], 1)).scale(0.3)
+        centro = Dot(puntos_equidistantes(puntos[0], puntos[-1], 1)).scale(0.2)
         # punto interseccion
-        pi = Dot([rectangulos[4].get_vertices()[0][0], -0.25, 0]).scale(0.3)
+        pi = Dot([rectangulos[4].get_vertices()[0][0], -0.25, 0]).scale(0.2)
         # linea de intercescion puinteada x
         linea_interseccion = DashedLine(
-            pi, centro, dash_length=0.02, stroke_width=1, color=YELLOW
+            pi, centro, dash_length=0.02, stroke_width=1, color=YELLOW_C
         )
 
         # texto variable x
@@ -102,13 +102,13 @@ class Scene2(MovingCameraScene):
         )
 
         # distancia entre las lineas
-        dp1 = Dot([rectangulos[4].get_vertices()[0, 0], 0.3, 0]).scale(0.3)
-        dp2 = Dot([rectangulos[5].get_vertices()[0, 0], 0.3, 0]).scale(0.3)
+        dp1 = Dot([rectangulos[4].get_vertices()[0, 0], 0.3, 0]).scale(0.2)
+        dp2 = Dot([rectangulos[5].get_vertices()[0, 0], 0.3, 0]).scale(0.2)
 
         # distancia d
 
         distancia_lineas = DashedLine(
-            dp1, dp2, stroke_width=1, dash_length=0.02, color=YELLOW
+            dp1, dp2, stroke_width=1, dash_length=0.02, color=YELLOW_C
         ).add(dp1, dp2)
         f3 = MathTex(r"d").next_to(distancia_lineas, UP, buff=0.001).scale(0.35)
         # relacion distancia d
@@ -119,7 +119,7 @@ class Scene2(MovingCameraScene):
             .shift([0.6, 0, 0])
         )
         # angulo
-        
+
         angulo = Angle(
             linea_guia,
             Line(Dot(ORIGIN), Dot([0, -1, 0])),
@@ -132,7 +132,7 @@ class Scene2(MovingCameraScene):
         f5 = MathTex(r"\alpha").next_to(angulo, UP, buff=0.01).scale(0.35)
         # acotacion de alfa
         f6 = (
-            MathTex(r"0\leqslant Min (\alpha,\theta) \leqslant \frac{\pi}{2}")
+            MathTex(r"0\leqslant Min(\alpha,\theta) \leqslant \frac{\pi}{2}")
             .scale(0.2)
             .next_to(f1, RIGHT, buff=0.7)
             .shift([0.1, 0.5, 0])
@@ -144,7 +144,7 @@ class Scene2(MovingCameraScene):
             radius=0.2,
             quadrant=(1, 1),
             stroke_width=1,
-            color=YELLOW,
+            color=YELLOW_C,
         )
 
         # simbolo teta
@@ -163,11 +163,12 @@ class Scene2(MovingCameraScene):
 
             centro.move_to(puntos_equidistantes(p1, p2, 1))
             obj.become(
-                DashedLine(pi, centro, stroke_width=1, dash_length=0.02, color=YELLOW)
+                DashedLine(pi, centro, stroke_width=1, dash_length=0.02, color=YELLOW_C)
             )
             f1.next_to(linea_interseccion, UP, buff=0.095)
 
         anguloTracker = ValueTracker(30)
+        end = False
         print(linea_guia.get_all_points()[0])
 
         def mov_point_angle(obj):
@@ -194,64 +195,91 @@ class Scene2(MovingCameraScene):
                     radius=0.2,
                     quadrant=(1, 1),
                     stroke_width=1,
-                    color=YELLOW,
+                    color=YELLOW_C,
                 )
             )
-            f5.become(
-                MathTex(
-                    r"\alpha = "
-                    + str(int(90 - anguloTracker.get_value()))
-                    + r"^{\circ}"
+            if not end:
+                f5.become(
+                    MathTex(
+                        r"\alpha = "
+                        + str(int(90 - anguloTracker.get_value()))
+                        + r"^{\circ}"
+                    )
+                    .next_to(angulo, UP, buff=0.001)
+                    .scale(0.2)
                 )
-                .next_to(angulo, UP, buff=0.001)
-                .scale(0.2)
-            )
-            f7.become(
-                MathTex(
-                    r"\theta = "
-                    + str(math.ceil(90 + anguloTracker.get_value()))
-                    + r"^{\circ}"
+                f7.become(
+                    MathTex(
+                        r"\theta = "
+                        + str(math.ceil(90 + anguloTracker.get_value()))
+                        + r"^{\circ}"
+                    )
+                    .next_to(angulo2, DOWN, buff=0.001)
+                    .scale(0.2)
                 )
-                .next_to(angulo2, DOWN, buff=0.001)
-                .scale(0.2)
-            )
 
-        # # se dibuja el largo de las lineas
-        # self.play(Create(distancia_lineas))
-        # # se muestra d
-        # self.play(Write(f3))
+        # se dibuja el largo de las lineas
+        self.play(Create(distancia_lineas))
+        # se muestra d
+        self.play(Write(f3))
 
-        # # se muestra k y su brace
-        # self.play(FadeIn(b1), Write(b1Text))
-        # # se escribe la restricion k<=d
-        # self.play(Write(f4))
-        # self.wait()
+        # se muestra k y su brace
+        self.play(FadeIn(b1), Write(b1Text))
+        # se escribe la restricion k<=d
+        self.play(Write(f4))
+        self.wait()
 
-        # # se borran los elementos creados anteriorment
-        # self.play(
-        #     Uncreate(distancia_lineas),
-        #     Uncreate(f3),
-        #     FadeOut(b1),
-        #     Uncreate(b1Text),
-        #     Uncreate(f4),
-        # )
-        # self.wait()
-        # # se muestra la distancia x
-        # self.play(Create(linea_interseccion), Write(f1), Create(pi), Create(centro))
-        # linea_interseccion.add_updater(mov_point)
-        # self.play(linea_guia.animate.shift([0.1, 0, 0]))
-        # self.play(linea_guia.animate.shift([-0.8, 0, 0]))
-        # self.play(linea_guia.animate.shift([0.7, 0, 0]), Write(f2))
-        # linea_interseccion.remove_updater(mov_point)
+        # se borran los elementos creados anteriorment
+        self.play(
+            Uncreate(distancia_lineas),
+            Uncreate(f3),
+            FadeOut(b1),
+            Uncreate(b1Text),
+            Uncreate(f4),
+        )
+        self.wait()
+        # se muestra la distancia x
+        self.play(Create(linea_interseccion), Write(f1), Create(pi), Create(centro))
+        linea_interseccion.add_updater(mov_point)
+        self.play(linea_guia.animate.shift([0.1, 0, 0]))
+        self.play(linea_guia.animate.shift([-0.8, 0, 0]))
+        self.play(linea_guia.animate.shift([0.7, 0, 0]), Write(f2))
+        linea_interseccion.remove_updater(mov_point)
 
-        # self.play(Uncreate(pi),Uncreate(centro),Uncreate(linea_interseccion),Uncreate(f1),Uncreate(f2))
-
+        self.play(Uncreate(pi),Uncreate(centro),Uncreate(linea_interseccion),Uncreate(f1),Uncreate(f2))
+        
         self.play(Create(angulo), Write(f5), Create(angulo2), Write(f7))
 
         linea_guia.add_updater(mov_point_angle)
+        self.play(linea_guia.animate.shift([0.1,0,0]))
         self.play(anguloTracker.animate.set_value(anguloTracker.get_value() - 30))
         self.play(anguloTracker.animate.set_value(anguloTracker.get_value() + 89.99999))
         self.play(anguloTracker.animate.set_value(anguloTracker.get_value() - 59.99999))
         self.play(Write(f6))
+        end = True
+        linea_interseccion.add_updater(mov_point)
+        self.play(
+            FadeOut(angulo2),
+            Uncreate(f7),
+            f5.animate.become(MathTex(r"\alpha").scale(0.35))
+            .next_to(f1, LEFT)
+            .shift([0, -0.25, 0]),
+            linea_guia.animate.shift([-0.05,0,0])
+        ),
+        
+        self.play(Create(linea_interseccion), Create(pi), Create(centro), Write(f1))
+        f2.next_to(f6, DOWN,buff=0.09)
+        self.play(
+            f6.animate.become(
+                MathTex(r"0\leqslant \alpha \leqslant \frac{\pi}{2}")
+                .scale(0.28)
+                .next_to(f1, RIGHT, buff=0.7)
+                .shift([0.2, 0.5, 0])
+            ),
+            Write(f2),
+        )
+        f2.add(f6)
+        rect = SurroundingRectangle(f2, TEAL, stroke_width=1)
+        self.play(Create(rect))
 
         self.wait()
