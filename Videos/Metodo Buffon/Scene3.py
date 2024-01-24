@@ -16,7 +16,7 @@ class Scene3(Scene):
         curve_1 = ax.plot(
             lambda x: (10 / np.sqrt(2 * np.pi)) * np.exp(-1 * (x - 2.5) ** 2),
             x_range=[0, 5],
-            color=BLUE_C,
+            color=GREEN_C,
         )
 
         curve_2 = ax.plot(lambda x: 0, x_range=[0, 5], color=WHITE)
@@ -30,7 +30,7 @@ class Scene3(Scene):
         b = MathTex("b").scale(0.8).next_to(line_2, DOWN, buff=0.4)
         f = MathTex("f_{_x } (x)").next_to(curve_1, UP).shift([3, 0, 0])
         area = ax.get_area(
-            curve_2, [1.5, 3.5], bounded_graph=curve_1, color=GREY, opacity=0.5
+            curve_2, [1.5, 3.5], bounded_graph=curve_1, color=GREEN, opacity=0.5
         )
         f2 = (
             MathTex("p(a \leqslant x \leqslant b)= \int_{a} ^ {b}f(x)\cdot dx")

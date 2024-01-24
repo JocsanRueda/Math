@@ -4,11 +4,13 @@ import math
 
 class Scene5(Scene):
     def construct(self):
-        f1 = MathTex(r"0\leqslant \alpha \leqslant \frac{\pi}{2}").scale(0.7).to_edge(UP)
+        f1 = (
+            MathTex(r"0\leqslant \alpha \leqslant \frac{\pi}{2}").scale(0.7).to_edge(UP)
+        )
         ax = Axes(
             x_range=[0, 5],
             y_range=[0, 6],
-            x_axis_config={"numbers_to_include": [0]},
+            x_axis_config={"numbers_to_include": []},
             tips=False,
         ).scale(0.8)
 
@@ -32,7 +34,7 @@ class Scene5(Scene):
             .shift([-1, 0, 0])
         )
         eq2 = (
-            MathTex(r"{{y}}", "=",r"\frac{ 2 }{ {{ \alpha }} }")
+            MathTex(r"{{y}}", "=", r"\frac{ 2 }{ {{ \alpha }} }")
             .scale(0.8)
             .to_edge(UP + RIGHT)
             .shift([-1, 0, 0])
@@ -43,8 +45,16 @@ class Scene5(Scene):
             .to_edge(UP + RIGHT)
             .shift([-1, 0, 0])
         )
-        self.add(f1, fn1, ax, labels, form1, area1, line1, form2, form3)
-
+        # self.add(f1, fn1, ax, labels, form1, area1, line1, form2, form3)
+        self.play(Create(ax), Create(labels))
+        self.play(
+            Create(fn1),
+            Write(f1),
+            Write(form1),
+        )
+        self.play(Create(line1),Create(area1))
+        self.play(Write(form3))
+        self.play(Write(form4))
         self.play(form4.animate.move_to(eq1[0][0]))
         form5 = eq1[1][0]
         self.play(Write(form5), form6.animate.move_to(eq1[2][0:3].get_center()))
@@ -55,3 +65,5 @@ class Scene5(Scene):
 
         self.play(TransformMatchingTex(eq1, eq2))
         self.play(TransformMatchingTex(eq2, eq3))
+
+        self.wait()

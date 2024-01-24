@@ -37,7 +37,7 @@ def create_rectangles(
     color=BLUE,
     width=1,
     height=10,
-    opacity=0.1,
+    opacity=0.4,
     stroke_color=None,
     stroke_width=0.30,
     stroke_opacity=1,
@@ -75,13 +75,16 @@ y = -0.5
 x2 = line_length * math.cos(angle) + x
 y2 = line_length * math.sin(angle) + y
 linea_guia = Line([x, y, 0], [x2, y2, 0], stroke_width=1)
+n = 0.3
+
+
 b1 = Brace(
-    linea_guia,
+    linea_guia.copy().scale(n ** (-1)),
     direction=linea_guia.copy().rotate(270 * DEGREES).get_unit_vector(),
-    sharpness=4,
-    stroke_width=0,
+    sharpness=2.5,
+    stroke_width=-0.5,
     buff=0.1,
-).scale(0.9)
+).scale(n * 1)
 b1Text = b1.get_tex("k").scale(0.4).shift([-0.25, 0.3, 0])
 
 puntos = linea_guia.get_all_points()
@@ -137,7 +140,7 @@ angulo = Angle(
     linea_guia,
     Line(Dot([x + 0.1, 0, 0]), Dot([x + 0.1, -1, 0])),
     quadrant=(1, -1),
-    radius=0.2,
+    radius=0.17,
     stroke_width=1,
     color=BLUE,
 )
@@ -154,7 +157,7 @@ f6 = (
 angulo2 = Angle(
     Line(Dot([x + 0.1, 0, 0]), Dot([x + 0.1, -1, 0])),
     linea_guia,
-    radius=0.2,
+    radius=0.17,
     quadrant=(1, 1),
     stroke_width=1,
     color=YELLOW_C,
@@ -162,11 +165,6 @@ angulo2 = Angle(
 
 # simbolo teta
 f7 = MathTex(r"\theta").scale(0.28).next_to(angulo2, DOWN, buff=0.1)
-
-anguloTracker = ValueTracker(30)
-end = False
-
-buff = 0.095
 
 
 def mov_point(obj):
@@ -200,7 +198,11 @@ def mov_point(obj):
     f1.next_to(linea_interseccion, UP, buff=buff)
 
 
-radio = 0.2
+radio = 0.17
+anguloTracker = ValueTracker(30)
+end = False
+
+buff = 0.095
 
 
 def mov_point_angle(obj):
@@ -254,8 +256,9 @@ class Scene2_0(MovingCameraScene):
         self.add(rectangulos, linea_guia)
 
         self.camera.frame.save_state()
-        self.camera.frame.set(width=3.5).move_to(linea_guia)
-
+        self.camera.frame.set(width=3.8).move_to(linea_guia)
+        self.wait()
+        self.play(rectangulos.animate.set_fill(opacity=0))
         # funcion para mover punto linea guia
 
         # se dibuja el largo de las lineas
@@ -301,39 +304,70 @@ class Scene2_0(MovingCameraScene):
             Uncreate(f1),
         )
         linea_interseccion.remove_updater(mov_point)
+        self.wait()
 
 
 class Scene2_1(MovingCameraScene):
     def construct(self):
+        rectangulos.set_fill(opacity=0)
         self.add(rectangulos, linea_guia)
 
         self.camera.frame.save_state()
-        self.camera.frame.set(width=3.5).move_to(linea_guia)
+        self.camera.frame.set(width=3.8).move_to(linea_guia)
 
         # funcion para mover punto linea guia
-
-        anguloTracker = ValueTracker(30)
+        global anguloTracker
+        global end
         end = False
 
         self.play(Create(angulo), Write(f5), Create(angulo2), Write(f7))
 
         linea_guia.add_updater(mov_point_angle)
+
         self.play(linea_guia.animate.shift([0.1, 0, 0]))
         self.play(anguloTracker.animate.set_value(anguloTracker.get_value() - 30))
         self.play(anguloTracker.animate.set_value(anguloTracker.get_value() + 89.99999))
         self.play(anguloTracker.animate.set_value(anguloTracker.get_value() - 59.99999))
         self.play(Write(f6))
+        self.play(linea_guia.animate.shift([-0.1, 0, 0]))
         end = True
+        alpha = (
+            MathTex(r"\alpha")
+            .next_to(
+                (
+                    Angle(
+                        linea_guia,
+                        Line(Dot([x + 0.1, 0, 0]), Dot([x + 0.1, -1, 0])),
+                        quadrant=(1, -1),
+                        radius=0.08,
+                        stroke_width=1,
+                        color=BLUE,
+                    )
+                ),
+                UP,
+                buff=-0.06,
+            )
+            .shift([0.05, 0, 0])
+            .scale(0.2)
+        )
 
+        linea_guia.remove_updater(mov_point_angle)
         self.play(
             FadeOut(angulo2),
             Uncreate(f7),
-            f5.animate.become(MathTex(r"\alpha").scale(0.35))
-            .next_to(f1, LEFT)
-            .shift([0, -0.25, 0]),
-            linea_guia.animate.shift([-0.05, 0, 0]),
+            f5.animate.become(alpha),
+            angulo.animate.become(
+                Angle(
+                    linea_guia,
+                    Line(Dot([x + 0.1, 0, 0]), Dot([x + 0.1, -1, 0])),
+                    quadrant=(1, -1),
+                    radius=0.08,
+                    stroke_width=1,
+                    color=BLUE,
+                )
+            ),
         ),
-        linea_guia.remove_updater(mov_point_angle)
+        f1 = MathTex(r"x").scale(0.2).next_to(linea_interseccion, UP, buff=0.035)
         f2.next_to(
             (
                 MathTex(r"0\leqslant \alpha \leqslant \frac{\pi}{2}")
@@ -347,6 +381,7 @@ class Scene2_1(MovingCameraScene):
 
         self.wait()
         linea_interseccion.add_updater(mov_point)
+        
         self.play(Create(pi), Create(centro), Create(linea_interseccion), Write(f1))
 
         self.play(
@@ -361,6 +396,8 @@ class Scene2_1(MovingCameraScene):
         f2.add(f6)
         rect = SurroundingRectangle(f2, TEAL, stroke_width=1).scale(0.9)
         self.play(Create(rect))
+        self.wait()
+        self.play(Uncreate(rect), Uncreate(f2), Uncreate(f6))
 
         self.wait()
 
@@ -368,7 +405,8 @@ class Scene2_1(MovingCameraScene):
 class Scene2_3(MovingCameraScene):
     def construct(self):
         self.camera.frame.save_state()
-        self.camera.frame.set(width=3.5).move_to(linea_guia)
+        self.camera.frame.set(width=3.8).move_to(linea_guia)
+        rectangulos.set_fill(opacity=0)
 
         # radio de los angulos
         global radio
@@ -400,8 +438,7 @@ class Scene2_3(MovingCameraScene):
         # simbolo para x
 
         buff = 0.035
-        f1 = MathTex(r"x").scale(0.2)
-        f1.next_to(linea_interseccion, UP, buff=buff)
+        f1 = MathTex(r"x").scale(0.2).next_to(linea_interseccion, UP, buff=buff)
 
         # punto extra del triangulo
         pi_extra = Dot([linea_guia.get_all_points()[0][0], pi.get_y(), 0]).scale(0.2)
@@ -502,15 +539,8 @@ class Scene2_3(MovingCameraScene):
         #     brace1Text,
         # )
 
-        self.add(rectangulos, linea_guia)
-        self.play(
-            Create(angulo),
-            Write(alpha),
-            Create(pi),
-            Create(centro),
-            Create(linea_interseccion),
-            Write(f1),
-        )
+        self.add(rectangulos, linea_guia, angulo, alpha, f1, linea_interseccion,pi,centro)
+    
         # se agrega updater
         linea_interseccion.add_updater(mov_point)
 
@@ -584,7 +614,7 @@ class Scene2_3(MovingCameraScene):
             color=TEAL,
             stroke_width=1,
         )
-        alpha=MathTex(r'\alpha').scale(0.2)
+        alpha = MathTex(r"\alpha").scale(0.2)
         alpha.next_to(angulo3, DOWN, buff=0.02).shift([-0.03, 0, 0])
         brace2 = Brace(
             Line(pi, centro, stroke_width=1).scale(n ** (-1)),
@@ -601,7 +631,7 @@ class Scene2_3(MovingCameraScene):
 
         self.play(FadeIn(brace2), Write(brace2Text))
         self.wait()
-        self.play(Create(pi_extra2), Create(dlinea3), Create(angulo3),Write(alpha))
+        self.play(Create(pi_extra2), Create(dlinea3), Create(angulo3), Write(alpha))
 
         self.play(Write(brace1Text))
         self.wait()

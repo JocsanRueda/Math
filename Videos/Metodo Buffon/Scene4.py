@@ -43,7 +43,18 @@ class Scene4(Scene):
             .to_edge(UP + RIGHT)
             .shift([-1, 0, 0])
         )
-        self.add(f1, fn1, ax, labels, form1, area1, line1, form2, form3)
+        #self.add(f1, fn1, ax, labels, form1, area1, line1, form2, form3)
+
+
+        self.play(Create(ax), Create(labels))
+        self.play(
+            Create(fn1),
+            Write(f1),
+            Write(form1),
+        )
+        self.play(Create(line1),Create(area1))
+        self.play(Write(form3))
+        self.play(Write(form4))
 
         self.play(form4.animate.move_to(eq1[0][0]))
         form5 = eq1[1][0]
