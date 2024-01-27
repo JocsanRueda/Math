@@ -4,39 +4,59 @@ import math
 
 class Scene6(Scene):
     def construct(self):
-        eq1 = MathTex(r"f_{_x}(x)", "=", "\\frac{ 2 }{ {{ d }} }").move_to(UP).scale(0.7)
+        eq1 = (
+            MathTex(r"f_{_x}(x)", "=", "\\frac{ 2 }{ {{ d }} }").move_to(UP).scale(0.7)
+        )
 
-        eq2 = MathTex(r"f_{_\alpha}(\alpha)", "=", r"\frac{ 2 }{ {{ \pi }} }").next_to(
-            eq1, DOWN
-        ).scale(0.7)
-        eq3 = MathTex(
-            r"f_{_{x, \alpha }}(x,\alpha)",
-            "=",
-            r"f_{_x}(x)",
-            r"\cdot",
-            r"f_{_\alpha}(\alpha)",
-        ).next_to(eq2, DOWN).scale(0.7)
+        eq2 = (
+            MathTex(r"f_{_\alpha}(\alpha)", "=", r"\frac{ 2 }{ {{ \pi }} }")
+            .next_to(eq1, DOWN)
+            .scale(0.7)
+        )
+        eq3 = (
+            MathTex(
+                r"f_{_{x, \alpha }}(x,\alpha)",
+                "=",
+                r"f_{_x}(x)",
+                r"\cdot",
+                r"f_{_\alpha}(\alpha)",
+            )
+            .next_to(eq2, DOWN)
+            .scale(0.7)
+        )
 
-        eq3 = MathTex(
-            r"f_{_{x, \alpha }}(x,\alpha)",
-            "=",
-            r"{{f_{_x}(x)}}",
-            r"\cdot",
-            r"{{f_{_\alpha}(\alpha)}}",
-        ).next_to(eq2, DOWN).scale(0.7)
+        eq3 = (
+            MathTex(
+                r"f_{_{x, \alpha }}(x,\alpha)",
+                "=",
+                r"{{f_{_x}(x)}}",
+                r"\cdot",
+                r"{{f_{_\alpha}(\alpha)}}",
+            )
+            .next_to(eq2, DOWN)
+            .scale(0.7)
+        )
 
-        eq4 = MathTex(
-            r"f_{_{x, \alpha }}(x,\alpha)",
-            "=",
-            r"\frac{2}{d}",
-            r"\cdot",
-            r"\frac{2}{\pi}",
-        ).next_to(eq2, DOWN).scale(0.7)
-        eq5 = MathTex(
-            r"f_{_{x, \alpha }}(x,\alpha)",
-            "=",
-            r"\frac{4}{d \pi}",
-        ).next_to(eq2, DOWN).scale(0.7)
+        eq4 = (
+            MathTex(
+                r"f_{_{x, \alpha }}(x,\alpha)",
+                "=",
+                r"\frac{2}{d}",
+                r"\cdot",
+                r"\frac{2}{\pi}",
+            )
+            .next_to(eq2, DOWN)
+            .scale(0.7)
+        )
+        eq5 = (
+            MathTex(
+                r"f_{_{x, \alpha }}(x,\alpha)",
+                "=",
+                r"\frac{4}{d \pi}",
+            )
+            .next_to(eq2, DOWN)
+            .scale(0.7)
+        )
 
         ac1 = MathTex(
             r"0 \leqslant x \leqslant \frac{k}{2} \sin {\alpha}",
@@ -177,6 +197,15 @@ class Scene6(Scene):
             .scale(0.6)
             .scale(1.3)
         )
+        eq19 = (
+            MathTex(
+                r"\pi",
+                r"=",
+                r"\frac{2 \cdot \text{Total de lanzamientos}} { \text{Numero de cortes}}",
+            )
+            .scale(0.6)
+            .scale(1.3)
+        )
 
         self.play(Write(eq1), Write(eq2))
         self.play(Write(eq3))
@@ -226,5 +255,7 @@ class Scene6(Scene):
         self.play(TransformMatchingTex(eq16, eq17))
         self.play(Write(eq13))
         self.play(TransformMatchingTex(eq17, eq18))
+        self.wait()
+        self.play(TransformMatchingTex(eq18, eq19))
 
         self.wait()

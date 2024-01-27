@@ -47,23 +47,30 @@ class Scene5(Scene):
         )
         # self.add(f1, fn1, ax, labels, form1, area1, line1, form2, form3)
         self.play(Create(ax), Create(labels))
+        self.wait()
+        self.play(Write(f1), Write(form1))
+        self.wait()
         self.play(
             Create(fn1),
-            Write(f1),
-            Write(form1),
         )
-        self.play(Create(line1),Create(area1))
+        self.wait()
+        self.play(Create(line1), Create(area1))
+        self.wait()
         self.play(Write(form3))
+        self.wait()
         self.play(Write(form4))
-        self.play(form4.animate.move_to(eq1[0][0]))
-        form5 = eq1[1][0]
+        self.wait()
+        form4copy = form4.copy()
+        self.play(form4copy.animate.move_to(eq1[0][0]))
+        form5 = eq1[1][0].copy()
         self.play(Write(form5), form6.animate.move_to(eq1[2][0:3].get_center()))
         form7 = eq1[3][0:]
         self.play(Write(form7))
         self.add(eq1)
-        self.remove(form4, form5, form6, form7)
+        self.remove(form4copy, form5, form6, form7)
 
         self.play(TransformMatchingTex(eq1, eq2))
-        self.play(TransformMatchingTex(eq2, eq3))
-
         self.wait()
+        self.play(TransformMatchingTex(eq2, eq3))
+        self.wait()
+

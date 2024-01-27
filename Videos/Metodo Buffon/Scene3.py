@@ -62,17 +62,22 @@ class Scene3(Scene):
         a.set_opacity(0)
         b.set_opacity(0)
         area.set_opacity(0)
+        self.wait()
         self.play(elementos.animate.scale(0.6).to_edge(LEFT))
         self.remove(line_1, line_2, a, b, area)
+        
         line_1.set_opacity(1)
         line_2.set_opacity(1)
         a.set_opacity(1)
         b.set_opacity(1)
         area.set_opacity(0.4)
+        self.wait()
         self.play(
             Write(f2), Create(line_1), Create(line_2), Write(a), Write(b), FadeIn(area)
         )
+        self.wait()
         self.play(Write(f3))
+        self.wait()
         self.play(Write(f4))
 
         self.wait()

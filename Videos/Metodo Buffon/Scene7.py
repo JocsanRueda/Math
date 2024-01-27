@@ -68,7 +68,7 @@ def generate_lineas(num_lines, line_length, rectangulos):
     return lines, cortes
 
 
-class Scene1(ThreeDScene):
+class Scene7(ThreeDScene):
     def construct(self):
         # se ajusta la posicion de la camara
         self.set_camera_orientation(phi=60 * DEGREES, theta=-70 * DEGREES, zoom=1)
@@ -96,83 +96,15 @@ class Scene1(ThreeDScene):
         y = -0.5
         x2 = line_length * math.cos(angle) + x
         y2 = line_length * math.sin(angle) + y
-        z = 3
+        z = 0
         linea_guia = Line([x, y, z], [x2, y2, z], color=WHITE)
-        k = MathTex(r"K").next_to(linea_guia, UP).shift([-0.7, 0, 0])
-        self.add(linea_guia, Ejes)
 
-        self.wait()
-
-        self.add_fixed_in_frame_mobjects(k)
-        k.set_opacity(0)
-        self.begin_ambient_camera_rotation(rate=0.05, about="theta")
-        # se crea la linea guia
-        self.play(Create(linea_guia))
-
-        # se hace zoom a la linea
-        self.move_camera(frame_center=linea_guia, zoom=3.8)
-
-        # se muestra longitud de la linea
-        self.play(k.animate.set_opacity(1))
-        self.wait(1.5)
-        self.play(k.animate.set_opacity(0))
-
-        # se mueve la camara
-        self.move_camera(frame_center=rectangulos[1], zoom=3)
-
-        # se crean los rectangulos
-        self.play(Create(rectangulos))
-        # se crean los pubntos
-        p1 = Dot([rectangulos[1].get_vertices()[1][0], 0, 0]).scale(0.3)
-        p2 = Dot([rectangulos[2].get_vertices()[2][0], 0, 0]).scale(0.3)
-        pd1 = Dot3D(p1.get_center()).scale(0.35)
-        pd2 = Dot3D(p2.get_center()).scale(0.35)
-
-        # se crea linea punteada
-        dline1 = DashedLine(p1, p2, dash_length=0.02, color=YELLOW)
-
-        # se crea texto
-        d = MathTex(r"d").move_to(dline1).shift([3.5, 0.5, 0]).scale(1.3)
-        self.add_fixed_in_frame_mobjects(d)
-        d.set_opacity(0)
-
-        # se muestra linea puteada y texto
-        self.play(Create(pd1), Create(pd2), Create(dline1), d.animate.set_opacity(1))
-        self.wait(1.5)
-        self.play(
-            Uncreate(pd1), Uncreate(pd2), Uncreate(dline1), d.animate.set_opacity(0)
-        )
-
-        # se meuve camara al origen
-        self.move_camera(frame_center=ORIGIN, zoom=1)
-        self.play(Uncreate(Ejes), Uncreate(labels))
-        # sae crea acotacion
-        form1 = MathTex(r"k\leqslant d")
-        self.add_fixed_in_frame_mobjects(form1)
-        form1.to_edge(UP + RIGHT)
-        form1.set_opacity(0)
-        self.play(form1.animate.set_opacity(1))
-
-        self.play(
-            linea_guia.animate.shift([0, 0, -z]),
-            rate_function=rate_functions.ease_in_expo,
-        )
-        self.play(Uncreate(form1))
-        self.wait()
-
-        form2 = MathTex(
-            r"\pi",
-            r"=",
-            r"\frac{2\cdot k \cdot (\text{Total de lanzamientos})} { (\text{Numero de cortes} ) \cdot d}",
-        ).to_edge(LEFT + UP)
-
-        self.add_fixed_in_frame_mobjects(form2)
-        form2.set_opacity(0)
-        self.play(form2.animate.set_opacity(1))
-        self.wait(3)
-        self.play(form2.animate.set_opacity(0))
-
-        l = [10, 100,1000,5000,10000]
+       
+    
+        
+       # self.begin_ambient_camera_rotation(rate=0.05, about="theta")
+        
+        l = [100000,50000,100000]
         # texto que muestra el numero de cortes
         oldObject = VGroup()
 
@@ -193,7 +125,7 @@ class Scene1(ThreeDScene):
                 .next_to(lanzamientos, DOWN)
                 .scale(0.7)
             )
-
+        
             # aproximacion generada de pi
             pi_aprox = round(
                 (2 * l[i] * line_length) / (cortes * rect_length),
@@ -207,7 +139,7 @@ class Scene1(ThreeDScene):
 
             if i == 0:
                 oldObject.add(num_cortes, lanzamientos, aprox, lineas)
-
+            
                 # se fijan los textos para que siempre vean a camara
                 self.add_fixed_in_frame_mobjects(num_cortes, lanzamientos, aprox)
                 num_cortes.set_opacity(0)
@@ -246,6 +178,6 @@ class Scene1(ThreeDScene):
                 self.wait()
         self.play(*[Uncreate(obj) for obj in oldObject])
         self.stop_ambient_camera_rotation()
-
+    
         self.move_camera(phi=0, theta=-PI / 2, frame_center=linea_guia, zoom=3.8)
         self.wait()
