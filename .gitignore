@@ -5,8 +5,11 @@
 *.pyc
 *.kdenlive
 *.ogg
+*.aup3
+*.aup3-wal
 
 # Ignorar carpetas generadas
 **/media/
 **/__pycache__/
 **/Kden/
+**/Audio
