@@ -1,3 +1,4 @@
+
 from manim import *
 import math
 
@@ -71,7 +72,10 @@ def generate_lineas(num_lines, line_length, rectangulos):
 class Scene7(ThreeDScene):
     def construct(self):
         # se ajusta la posicion de la camara
-        self.set_camera_orientation(phi=60 * DEGREES, theta=-70 * DEGREES, zoom=1)
+
+
+
+
 
         # largo de la linea
         line_length = 1
@@ -99,12 +103,16 @@ class Scene7(ThreeDScene):
         z = 0
         linea_guia = Line([x, y, z], [x2, y2, z], color=WHITE)
 
-       
-    
-        
-       # self.begin_ambient_camera_rotation(rate=0.05, about="theta")
-        
-        l = [100000,50000,100000]
+
+
+        self.add(rectangulos,linea_guia)
+
+        self.set_camera_orientation(phi=0 * DEGREES, theta=-PI/2, zoom=3.8,frame_center=linea_guia)
+        self.wait()
+        self.move_camera(phi=60*DEGREES, theta=-70*DEGREES, frame_center=ORIGIN, zoom=1)
+        self.begin_ambient_camera_rotation(rate=0.05, about="theta")
+        self.wait(3)
+        l = [50000,100000,200000]
         # texto que muestra el numero de cortes
         oldObject = VGroup()
 
@@ -125,7 +133,7 @@ class Scene7(ThreeDScene):
                 .next_to(lanzamientos, DOWN)
                 .scale(0.7)
             )
-        
+
             # aproximacion generada de pi
             pi_aprox = round(
                 (2 * l[i] * line_length) / (cortes * rect_length),
@@ -139,7 +147,7 @@ class Scene7(ThreeDScene):
 
             if i == 0:
                 oldObject.add(num_cortes, lanzamientos, aprox, lineas)
-            
+
                 # se fijan los textos para que siempre vean a camara
                 self.add_fixed_in_frame_mobjects(num_cortes, lanzamientos, aprox)
                 num_cortes.set_opacity(0)
@@ -176,8 +184,10 @@ class Scene7(ThreeDScene):
                 oldObject.remove(*oldObject)
                 oldObject.add(num_cortes, lanzamientos, aprox, lineas)
                 self.wait()
+
+        self.wait(4)
         self.play(*[Uncreate(obj) for obj in oldObject])
-        self.stop_ambient_camera_rotation()
-    
-        self.move_camera(phi=0, theta=-PI / 2, frame_center=linea_guia, zoom=3.8)
+
         self.wait()
+
+

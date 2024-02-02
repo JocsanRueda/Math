@@ -1,10 +1,10 @@
 from manim import *
-config.frame_width=9
-config.frame_height=16
-config.pixel_width=2160
-config.pixel_height=3840
-config.frame_rate=60
-class MatEsl(Scene):
+# config.frame_width=9
+# config.frame_height=16
+# config.pixel_width=2160
+# config.pixel_height=3840
+# config.frame_rate=60
+class intro(Scene):
     def construct(self):
         # Crea el texto
         text = Text("MathEsl").scale(2)

@@ -188,15 +188,17 @@ class Scene6(Scene):
             .scale(1.3)
         )
 
+        
         eq18 = (
             MathTex(
-                r"\frac{2} { \pi}",
+                r"\pi",
                 r"=",
-                r"\frac{\text{Numero de cortes}} {\text{Total de lanzamientos}}",
+                r"\frac{2\cdot k \cdot \text{Total de lanzamientos}} {d \cdot \text{Numero de cortes}}",
             )
             .scale(0.6)
             .scale(1.3)
         )
+
         eq19 = (
             MathTex(
                 r"\pi",
@@ -229,8 +231,11 @@ class Scene6(Scene):
         eq11.next_to(eq10, DOWN)
         eq12.next_to(eq11, DOWN)
         self.play(TransformMatchingTex(eq6, eq6_2))
+        self.wait()
         self.play(TransformMatchingTex(eq6_2, eq6_3))
+        self.wait()
         self.play(TransformMatchingTex(eq6_3.copy(), eq7))
+        self.wait()
         self.play(TransformMatchingTex(eq7.copy(), eq8))
         self.play(TransformMatchingTex(eq8.copy(), eq9))
         self.play(TransformMatchingTex(eq9.copy(), eq10))
@@ -253,9 +258,9 @@ class Scene6(Scene):
         self.play(TransformMatchingTex(eq15, eq16))
         self.wait()
         self.play(TransformMatchingTex(eq16, eq17))
-        self.play(Write(eq13))
         self.play(TransformMatchingTex(eq17, eq18))
         self.wait()
+        self.play(Write(eq13))
         self.play(TransformMatchingTex(eq18, eq19))
 
         self.wait()
