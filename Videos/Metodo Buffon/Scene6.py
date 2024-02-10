@@ -170,9 +170,9 @@ class Scene6(Scene):
 
         eq16 = (
             MathTex(
-                r"\frac{2k} {d \pi}",
+                r"p(A)",
                 r"=",
-                r"\frac{\text{Resultados Favorables}} {\text{Total de casos posibles}}",
+                r"\frac{\text{Número de cortes}} {\text{Total de lanzamientos}}",
             )
             .scale(0.6)
             .scale(1.3)
@@ -182,7 +182,7 @@ class Scene6(Scene):
             MathTex(
                 r"\frac{2k} {d \pi}",
                 r"=",
-                r"\frac{\text{Numero de cortes}} {\text{Total de lanzamientos}}",
+                r"\frac{\text{Número de cortes}} {\text{Total de lanzamientos}}",
             )
             .scale(0.6)
             .scale(1.3)
@@ -193,7 +193,7 @@ class Scene6(Scene):
             MathTex(
                 r"\pi",
                 r"=",
-                r"\frac{2\cdot k \cdot \text{Total de lanzamientos}} {d \cdot \text{Numero de cortes}}",
+                r"\frac{2\cdot k \cdot \text{Total de lanzamientos}} {d \cdot \text{Número de cortes}}",
             )
             .scale(0.6)
             .scale(1.3)
@@ -203,7 +203,7 @@ class Scene6(Scene):
             MathTex(
                 r"\pi",
                 r"=",
-                r"\frac{2 \cdot \text{Total de lanzamientos}} { \text{Numero de cortes}}",
+                r"\frac{2 \cdot \text{Total de lanzamientos}} { \text{Número de cortes}}",
             )
             .scale(0.6)
             .scale(1.3)
@@ -213,6 +213,7 @@ class Scene6(Scene):
         self.play(Write(eq3))
         self.play(TransformMatchingTex(eq3, eq4))
         self.play(TransformMatchingTex(eq4, eq5))
+        self.wait()
         self.play(Uncreate(eq1), Uncreate(eq2))
         self.play(eq5.animate.to_edge(UP))
         eq6.next_to(eq5, DOWN)

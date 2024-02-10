@@ -68,7 +68,7 @@ def generate_lineas(num_lines, line_length, rectangulos):
     return lines, cortes
 
 
-class Scene1(ThreeDScene):
+class Scene1_0(ThreeDScene):
     def construct(self):
         # se ajusta la posicion de la camara
         self.set_camera_orientation(phi=60 * DEGREES, theta=-70 * DEGREES, zoom=1)
@@ -114,7 +114,7 @@ class Scene1(ThreeDScene):
 
         # se muestra longitud de la linea
         self.play(k.animate.set_opacity(1))
-        self.wait(1.5)
+        self.wait(3)
         self.play(k.animate.set_opacity(0))
 
         # se mueve la camara
@@ -138,7 +138,7 @@ class Scene1(ThreeDScene):
 
         # se muestra linea puteada y texto
         self.play(Create(pd1), Create(pd2), Create(dline1), d.animate.set_opacity(1))
-        self.wait(1.5)
+        self.wait(3)
         self.play(
             Uncreate(pd1), Uncreate(pd2), Uncreate(dline1), d.animate.set_opacity(0)
         )
@@ -152,18 +152,18 @@ class Scene1(ThreeDScene):
         form1.to_edge(UP + RIGHT)
         form1.set_opacity(0)
         self.play(form1.animate.set_opacity(1))
-
+        self.wait(6)
         self.play(
             linea_guia.animate.shift([0, 0, -z]),
             rate_function=rate_functions.ease_in_expo,
         )
         self.play(Uncreate(form1))
-        self.wait()
+        self.wait(6)
 
         form2 = MathTex(
             r"\pi",
-            r"=",
-            r"\frac{2\cdot k \cdot (\text{Total de lanzamientos})} { (\text{Numero de cortes} ) \cdot d}",
+            r"\approx",
+            r"\frac{2\cdot k \cdot (\text{Total de lanzamientos})} { (\text{Número de cortes} ) \cdot d}",
         ).to_edge(LEFT + UP)
 
         self.add_fixed_in_frame_mobjects(form2)
@@ -243,7 +243,8 @@ class Scene1(ThreeDScene):
 
                 oldObject.remove(*oldObject)
                 oldObject.add(num_cortes, lanzamientos, aprox, lineas)
-                self.wait()
+                self.wait(5)
+        self.wait(2 )
         self.play(*[Uncreate(obj) for obj in oldObject])
         self.stop_ambient_camera_rotation()
 

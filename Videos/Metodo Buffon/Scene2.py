@@ -381,7 +381,7 @@ class Scene2_1(MovingCameraScene):
 
         self.wait()
         linea_interseccion.add_updater(mov_point)
-        
+
         self.play(Create(pi), Create(centro), Create(linea_interseccion), Write(f1))
 
         self.play(
@@ -539,8 +539,8 @@ class Scene2_3(MovingCameraScene):
         #     brace1Text,
         # )
 
-        self.add(rectangulos, linea_guia, angulo, alpha, f1, linea_interseccion,pi,centro)
-    
+        self.add(rectangulos, linea_guia, angulo, alpha)
+        self.play(Create(f1), Create(linea_interseccion), Create(pi), Create(centro))
         # se agrega updater
         linea_interseccion.add_updater(mov_point)
 
@@ -548,7 +548,7 @@ class Scene2_3(MovingCameraScene):
         self.play(Create(pi_extra), Create(dlinea1), Create(dlinea2))
         pi_extra.add_updater(mov_point_triangle)
         self.play(Create(brace1), Write(brace1Text))
-
+        self.wait()
         self.play(
             anguloTracker.animate.set_value(79),
             run_time=1.5,
@@ -578,6 +578,7 @@ class Scene2_3(MovingCameraScene):
             f1Copy.animate.move_to(acotacionX[1]),
         )
         self.play(Write(acotacionX))
+        self.wait()
         self.remove(brace1TextCopy, f1Copy)
         linea_guia.remove_updater(mov_point_angle)
         pi_extra.remove_updater(mov_point_triangle)

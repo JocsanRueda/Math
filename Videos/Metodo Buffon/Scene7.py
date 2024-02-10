@@ -190,4 +190,3 @@ class Scene7(ThreeDScene):
 
         self.wait()
 
-

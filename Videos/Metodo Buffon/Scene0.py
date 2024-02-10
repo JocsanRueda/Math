@@ -64,5 +64,62 @@ class Scene0(Scene):
             Uncreate(lcopy),
         )
 
-        self.play(Write(form2))
+        formp1 = MathTex(
+            r"\pi = 4 \left(1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \ldots \right)"
+        ).scale(0.7).to_edge(UP)
+
+        # 2. Fórmula de Wallis
+
+        formp2 = (
+            MathTex(
+                r"\pi = 4 \cdot \sum_{k=0}^{\infty} \frac{(-1)^k}{2k + 1}"
+            )
+           
+            .next_to(formp1, DOWN)
+            .scale(0.7)
+        )
+
+        # 3. Fórmula de Euler para π
+
+        formp3 = (
+            MathTex(r"\pi \approx \frac{1}{\frac{2\sqrt{2}}{9801} \sum_{k=0}^{\infty} \frac{(4k)! \cdot (1103 + 26390k)}{(k!)^4 \cdot 396^{4k}}}")
+          
+            .next_to(formp2, DOWN)
+            .scale(0.7)
+        )
+
+       
+
+        # 5. Fórmula de Ramanujan para π
+
+        formp4 = (
+            MathTex(
+                r"\pi = \sqrt{6 \cdot \sum_{k=1}^{\infty} \frac{1}{k^2}}"
+            )
+           
+            .next_to(formp3, DOWN)
+            .scale(0.7)
+        )
+
+        # 6. Fórmula de Nilakantha Somayaji
+
+        formp5 = (
+            MathTex(r"\pi \approx \frac{426880 \sqrt{10005}}{\sum_{k=0}^{\infty} \frac{(6k)! \cdot (545140134k + 13591409)}{(3k)! \cdot (k!)^3 \cdot (-262537412640768000)^k}}")
+          
+            .next_to(formp4, DOWN)
+            .scale(0.7)
+        )
+
+      
+        self.play(
+            Write(formp1), Write(formp2), Write(formp3), Write(formp4), Write(formp5)
+        )
+        self.wait()
+        self.play(
+            Uncreate(formp1),
+            Uncreate(formp2),
+            Uncreate(formp3),
+            Uncreate(formp4),
+            Uncreate(formp5)
+        )
         self.wait()

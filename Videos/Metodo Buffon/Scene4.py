@@ -73,4 +73,4 @@ class Scene4(Scene):
         self.play(TransformMatchingTex(eq1, eq2))
         self.wait()
         self.play(TransformMatchingTex(eq2, eq3))
-        self.wait()
+        self.wait(2)
