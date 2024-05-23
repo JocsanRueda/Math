@@ -9,7 +9,7 @@ class Scene1(ThreeDScene):
     def construct(self):
 
         self.set_camera_orientation(phi=60 * DEGREES, theta=-70 * DEGREES)
-
+        delta_time=1/int(self.camera.frame_rate)
         # cubo como personaje
         Cubo = Cube(side_length=1, fill_opacity=1, fill_color=YELLOW, stroke_width=3)
         Cubo.set_stroke(color=GRAY)
@@ -57,8 +57,8 @@ class Scene1(ThreeDScene):
                 
         def mov_personaje(obj):
             if(magnitud.get_value()!=0):
-                x = math.cos(angulo.get_value()) * (magnitud.get_value()/8)
-                y = math.sin(angulo.get_value()) * (magnitud.get_value()/8)
+                x = math.cos(angulo.get_value()) * (magnitud.get_value())*delta_time
+                y = math.sin(angulo.get_value()) * (magnitud.get_value())*delta_time
                 Cubo.shift([x,y,0])
             
 
@@ -69,39 +69,42 @@ class Scene1(ThreeDScene):
         
         #agregar elementos a pantall
         
-        self.add_fixed_in_frame_mobjects(Joystick)
+        
+        
         #self.add(Cubo,ejes)
         
-        self.play(Create(Joystick),Create(Cubo),Create(ejes))
-        
+        self.add(ejes)
+        self.add_fixed_in_frame_mobjects(Joystick)
+        self.play(Create(Joystick),Create(Cubo))
         
         # #animaciones
-        # Cubo.save_state()
-        # CircInt.save_state()
-        # angulo.set_value(PI / 2)
-        # #mover hacia arriba
-        # self.play(magnitud.animate.increment_value(3))
+        Cubo.save_state()
+        CircInt.save_state()
+        angulo.set_value(PI / 2)
+        #mover hacia arriba
         
-        # #mover hacia abajo
-        # angulo.set_value(-PI / 2)
-        # magnitud.set_value(0)
+        self.play(magnitud.animate.increment_value(8))
         
-        # self.play(magnitud.animate.increment_value(3))
+        #mover hacia abajo
+        angulo.set_value(-PI / 2)
+        magnitud.set_value(0)
         
-        # #mover en angulo 2PI/3
-        # angulo.set_value(2*PI/6)
-        # magnitud.set_value(0)
+        self.play(magnitud.animate.increment_value(8))
         
-        # self.play(magnitud.animate.set_value(3))
+        #mover en angulo 2PI/3
+        angulo.set_value(2*PI/6)
+        magnitud.set_value(0)
         
-        # #mover en angulo 11PI/6
-        # angulo.set_value(11*PI/6)
-        # magnitud.set_value(0)
+        self.play(magnitud.animate.set_value(8))
         
-        # self.play(magnitud.animate.set_value(3))
+        #mover en angulo 11PI/6
+        angulo.set_value(11*PI/6)
+        magnitud.set_value(0)
         
-        # #mover al centro
-        # magnitud.set_value(0)
-        # self.play(Restore(Cubo),Restore(CircInt))
+        self.play(magnitud.animate.set_value(8))
+        
+        #mover al centro
+        magnitud.set_value(0)
+        self.play(Restore(Cubo),Restore(CircInt))
 
         self.wait()
