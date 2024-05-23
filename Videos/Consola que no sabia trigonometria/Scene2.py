@@ -9,16 +9,14 @@ class Scene2(ThreeDScene):
     def construct(self):
 
         self.set_camera_orientation(phi=60 * DEGREES, theta=-70 * DEGREES)
-
+        delta_time=1/int(self.camera.frame_rate)
         # cubo como personaje
         Cubo = Cube(side_length=1, fill_opacity=1, fill_color=YELLOW, stroke_width=3)
         Cubo.set_stroke(color=GRAY)
 
         # Ejes
         Ejes = ThreeDAxes(x_range=[-7,7,1],y_range=[-7,7,1],x_length=12, y_length=12)
-        labels = Ejes.get_axis_labels(
-            Tex("x-axis").scale(0.7), Text("y-axis").scale(0.45),Text("z-axis").scale(0.45)
-        )
+       
         # Joystick Virtual
         # Circulo externo
         # radio mayor
@@ -60,8 +58,8 @@ class Scene2(ThreeDScene):
         # Funcion que permite move el personaje al ajustar los tracker de angulo ymagnitud
         def mov_personaje(obj):
             if magnitud.get_value() != 0:
-                x = math.cos(angulo.get_value()) * (magnitud.get_value() / 8)
-                y = math.sin(angulo.get_value()) * (magnitud.get_value() / 8)
+                x = math.cos(angulo.get_value()) * (magnitud.get_value() )*delta_time
+                y = math.sin(angulo.get_value()) * (magnitud.get_value() )*delta_time
                 Cubo.shift([x, y, 0])
 
         # funcion que ajusta el texto P en funcion de la posicion del personaje
@@ -93,7 +91,7 @@ class Scene2(ThreeDScene):
         # agregar elementos a pantall
 
         self.add_fixed_in_frame_mobjects(Joystick)
-        self.add(Cubo, Ejes,labels)
+        self.add(Cubo, Ejes)
 
         # self.play(Create(Joystick),Create(Cubo),Create(Ejes))
 
@@ -104,32 +102,32 @@ class Scene2(ThreeDScene):
         
         # # para x=2.598
         # #y=1.5
-        # angulo.set_value(PI / 6)
-        # #mover hacia arriba
-        # self.play(magnitud.animate.increment_value(3))
-        # self.wait()
-        # magnitud.set_value(0)
+        angulo.set_value(PI / 6)
+        #mover hacia arriba
+        self.play(magnitud.animate.increment_value(8))
+        self.wait()
+        magnitud.set_value(0)
+        p.remove_updater(update_text)
+        self.play(Restore(Cubo),Restore(Joystick),Uncreate(p))
+    
+        ##-----------------------------Calculo de angulo---------------------------#
 
-        # self.play(Restore(Cubo),Restore(Joystick))
+        self.add_fixed_in_frame_mobjects(f1)
+        self.play(Write(f1))
 
-        # -----------------------------Calculo de angulo---------------------------#
+        self.add_fixed_in_frame_mobjects(f2)
 
-        # self.add_fixed_in_frame_mobjects(f1)
-        # self.play(Write(f1))
+        self.play(Write(f2))
 
-        # self.add_fixed_in_frame_mobjects(f2)
+        self.add_fixed_in_frame_mobjects(f3)
 
-        # self.play(Write(f2))
-
-        # self.add_fixed_in_frame_mobjects(f3)
-
-        # self.play(Write(f3))
-        # self.add_fixed_in_frame_mobjects(f4)
-        # f4.set_opacity(0)
-        # self.play(ReplacementTransform(f3, f4), f4.animate.set_opacity(1))
-        
+        self.play(Write(f3))
+        self.add_fixed_in_frame_mobjects(f4)
+        f4.set_opacity(0)
+        self.play(ReplacementTransform(f3, f4), f4.animate.set_opacity(1))
+        self.play(Uncreate(f4),Uncreate(f3),Uncreate(f2),Uncreate(f1))
         # Mostrar posicion 
-        self.move_camera(phi=0, theta=3*PI/2, frame_center=Ejes, zoom=1)
+        self.move_camera(phi=0, theta=-PI/2, frame_center=Ejes, zoom=1)
         
         
         self.wait()
