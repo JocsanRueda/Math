@@ -7,7 +7,10 @@ import numpy
 
 class Scene2_1(MovingCameraScene):
     def construct(self):
-
+        
+        #delta time
+        delta_time=1/int(self.camera.frame_rate)
+     
         # cubo como personaje
         Cubo = Square(side_length=1, fill_opacity=1, fill_color=YELLOW, stroke_width=3)
         Cubo.set_stroke(color=GRAY)
@@ -100,8 +103,8 @@ class Scene2_1(MovingCameraScene):
         def mov_personaje(obj):
 
             if magnitud.get_value() > 0:
-                x = math.cos(angulo.get_value()) * (magnitud.get_value() / 10)
-                y = math.sin(angulo.get_value()) * (magnitud.get_value() / 10)
+                x = math.cos(angulo.get_value()) * (magnitud.get_value())*delta_time
+                y = math.sin(angulo.get_value()) * (magnitud.get_value())*delta_time
                 Cubo.shift([x, y, 0])
 
         def updater_triangulo(obj):
@@ -129,7 +132,7 @@ class Scene2_1(MovingCameraScene):
         # ------------------------------------------------Texto matematico----------------------------------------------------#
         f1 = (
             MathTex(r"\sin(\theta_1)=\frac{y_1-y_0}{L}")
-            .move_to(UP * 5 + RIGHT * 7)
+            .move_to(UP * 5 + RIGHT * 7.2)
             .scale(0.8)
         )
         f2 = MathTex(r"\cos(\theta_1)=\frac{x_1-x_0}{L}").next_to(f1, DOWN).scale(0.8)
@@ -143,7 +146,7 @@ class Scene2_1(MovingCameraScene):
             .scale(0.8)
             .move_to(f2.get_center())
         )
-        
+
         f5 = (
             MathTex(r"x_n", "=", r"\cos(\theta_n)", "L", "+", "x_{n-1}")
             .scale(0.8)
@@ -197,7 +200,7 @@ class Scene2_1(MovingCameraScene):
         triangulo2.add_updater(updater_triangulo2)
         self.add(triangulo2)
         # mover hacia arriba
-        self.play(magnitud.animate.set_value(3))
+        self.play(magnitud.animate.set_value(4))
         self.wait()
         magnitud.set_value(0)
         # -------------Elementos temporales----------------------------------
@@ -211,7 +214,11 @@ class Scene2_1(MovingCameraScene):
         # posicionamiento de texto
         y1.next_to(Bline1, RIGHT)
         x1.next_to(Bline2, DOWN)
-        self.add(Bline1, Bline2, x1, y1, f1, f2)
+        self.play(FadeIn(Bline1), FadeIn(Bline2))
+        self.wait()
+        self.play(Write(x1), Write(y1))
+        self.play(Write(f1), Write(f2))
+        
         self.wait()
         self.play(TransformMatchingTex(f1, f3))
         self.play(TransformMatchingTex(f2, f4))
