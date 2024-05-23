@@ -11,7 +11,7 @@ class Scene0(ThreeDScene):
         Ejes = ThreeDAxes()
 
         # resolucion de circulos
-        resolucion = (10, 10)
+        resolucion = (20, 20)
 
         # alto de palanca
         alto = 2
@@ -44,6 +44,10 @@ class Scene0(ThreeDScene):
         pY.move_to(Base.get_center() + [0, -1 * 2.5 / 2, 0])
         Joystick = VGroup()
         Joystick.add(Base, Palanca, Rodillo, pX, pY)
+        Base.set_stroke(width=3,color=GRAY)
+        pX.set_stroke(width=3,color=GRAY)
+        pY.set_stroke(width=3,color=GRAY)
+       
         # updater texto
 
         Vx = MathTex(r"V_x=0").to_edge(
@@ -53,8 +57,8 @@ class Scene0(ThreeDScene):
         
         self.add_fixed_in_frame_mobjects(Vx)
         self.add_fixed_in_frame_mobjects(Vy)
-        valueX = ValueTracker(0)
-        valueY = ValueTracker(0)
+        valueX = ValueTracker(2.5)
+        valueY = ValueTracker(2.5)
 
         def update_vx(obj):
 
@@ -80,51 +84,53 @@ class Scene0(ThreeDScene):
         pY.save_state()
         pX.save_state()
 
-        self.add(Ejes)
+        self.add(Ejes,Joystick)
         self.play(FadeIn(Joystick))
-        # self.play(
-        #     Rotate(mobject=Palanca, angle=PI / 4, axis=Y_AXIS, about_point=(0, 0, 0.4)),
-        #     Rotate(mobject=Rodillo, angle=PI / 4, axis=Y_AXIS),
-        #     Rotate(mobject=pY, angle=PI / 4, axis=Y_AXIS),
-        #     valueY.animate.set_value(1.5),
-        # )
-
-        # self.play(
-        #     Rotate(
-        #         mobject=Palanca, angle=-PI / 2, axis=Y_AXIS, about_point=(0, 0, 0.4)
-        #     ),
-        #     Rotate(mobject=Rodillo, angle=-PI / 2, axis=Y_AXIS),
-        #     Rotate(mobject=pY, angle=-PI / 2, axis=Y_AXIS),
-        #     valueY.animate.set_value(-1.5)
-        # )
-
-        # self.play(Restore(Palanca), Restore(Rodillo),Restore(pY),valueY.animate.set_value(0))
-        
-
-        # self.play(
-        #     Rotate(
-        #         mobject=Palanca,
-        #         angle=PI / 4,
-        #         axis=Y_AXIS + X_AXIS,
-        #         about_point=(0, 0, 0.4),
-        #     ),
-        #     Rotate(mobject=pY, angle=PI / 4, axis=Y_AXIS),
-        #     Rotate(mobject=pX, angle=PI / 4, axis=X_AXIS),
-        #     valueX.animate.set_value(1.5),
-        #     valueY.animate.set_value(1.5),
-        # )
-
-        # self.play(
-        #     Rotate(
-        #         mobject=Palanca,
-        #         angle=-PI / 2,
-        #         axis= Y_AXIS,
-        #         about_point=(0, 0, 0.4),
-        #     ),
-        #     Rotate(mobject=pY, angle=-PI / 2, axis=Y_AXIS),
-        #     valueY.animate.set_value(0)
-        # )
-
-        # self.play( Restore(Palanca),Restore(pY),Restore(pX),valueX.animate.set_value(0),valueY.animate.set_value(0))
-
+        self.play(
+            Rotate(mobject=Palanca, angle=PI / 4, axis=Y_AXIS, about_point=(0, 0, 0.4)),
+            Rotate(mobject=Rodillo, angle=PI / 4, axis=Y_AXIS),
+            Rotate(mobject=pY, angle=PI / 4, axis=Y_AXIS),
+            valueY.animate.increment_value(2.5),
+        )
         self.wait()
+        self.play(
+            Rotate(
+                mobject=Palanca, angle=-PI / 2, axis=Y_AXIS, about_point=(0, 0, 0.4)
+            ),
+            Rotate(mobject=Rodillo, angle=-PI / 2, axis=Y_AXIS),
+            Rotate(mobject=pY, angle=-PI / 2, axis=Y_AXIS),
+            valueY.animate.set_value(0)
+        )
+
+        self.play(Restore(Palanca), Restore(Rodillo),Restore(pY),valueY.animate.set_value(2.5))
+        
+        self.wait()
+        
+        self.play(
+            Rotate(
+                mobject=Palanca,
+                angle=PI / 4,
+                axis=Y_AXIS + X_AXIS,
+                about_point=(0, 0, 0.4),
+            ),
+            Rotate(mobject=pY, angle=PI / 4, axis=Y_AXIS),
+            Rotate(mobject=pX, angle=PI / 4, axis=X_AXIS),
+            valueX.animate.increment_value(2.5),
+            valueY.animate.increment_value(2.5),
+        )
+        self.wait()
+        self.play(
+            Rotate(
+                mobject=Palanca,
+                angle=-PI / 2,
+                axis= Y_AXIS,
+                about_point=(0, 0, 0.4),
+            ),
+            Rotate(mobject=pY, angle=-PI / 2, axis=Y_AXIS),
+            valueY.animate.set_value(2.5)
+        )
+
+        self.play( Restore(Palanca),Restore(pY),Restore(pX),valueX.animate.set_value(2.5),valueY.animate.set_value(2.5))
+        self.wait(0.5)
+        self.play(FadeOut(Joystick))
+        
