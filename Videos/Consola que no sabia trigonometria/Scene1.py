@@ -76,8 +76,14 @@ class Scene1(ThreeDScene):
         self.add(ejes)
         self.add_fixed_in_frame_mobjects(Joystick)
         self.play(Create(Joystick),Create(Cubo))
+        self.wait()
+        #self.move_camera(phi=60 * DEGREES, theta=-70 * DEGREES)
+        #self.begin_ambient_camera_rotation(rate=-PI/20, about="theta")
+          
+        #self.wait(15)
+        #self.stop_ambient_camera_rotation()
         
-        # #animaciones
+        #animaciones
         Cubo.save_state()
         CircInt.save_state()
         angulo.set_value(PI / 2)

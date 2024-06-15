@@ -27,9 +27,8 @@ class Scene3(Scene):
             r"R_x(\theta)",
             r"=\begin{bmatrix} 1 & 0 & 0\\ 0 & \cos(\theta) & -\sin(\theta) \\ 0 & \sin(\theta) & \cos(\theta) \end{bmatrix}",
             font_size=45,
-        ).to_edge(UP)
-        Ry = MathTex(tRy, font_size=45).next_to(Rx, DOWN, buff=0.7)
-        Rz = MathTex(tRz, font_size=45).next_to(Ry, DOWN, buff=0.7)
+        )
+    
 
         punto = Dot([1, 1, 1])
         pCordenadas = MathTex(r"p", r"=[x_0,y_0,z_0]", font_size=45).next_to(
@@ -57,7 +56,12 @@ class Scene3(Scene):
         f13 = MathTex(r"(p-p_c)", r" \cdot", r" R_x(\theta) ").next_to(f12,DOWN)
         # ------Animacion 1----
         self.play(Write(Rx))
+        self.wait()
+        self.play(Rx.animate.to_edge(UP))
+        Ry = MathTex(tRy, font_size=45).next_to(Rx, DOWN, buff=0.7)
+        Rz = MathTex(tRz, font_size=45).next_to(Ry, DOWN, buff=0.7)
         self.play(Write(Ry))
+        
         self.play(Write(Rz))
         self.wait()
         self.play(Uncreate(Ry),Uncreate(Rz))
@@ -83,7 +87,7 @@ class Scene3(Scene):
         self.play(Write(f3))
         self.wait()
         self.play(Write(f4))
-
+        self.wait()
         #-----------Grupo temporal
         tempGroup=VGroup()
         tempGroup.add(f2,f3,f4)
@@ -93,7 +97,7 @@ class Scene3(Scene):
 
         self.wait()
 
-        #---------------Animacion 3 posicioneas
+        #---------------Animacion 3 posicioneas 
         angulo = 0
         posiciones = VGroup()
         (x, y, z) = self.RotacionX(punto.get_center(), angulo)

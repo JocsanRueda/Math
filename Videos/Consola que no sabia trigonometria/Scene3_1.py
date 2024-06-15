@@ -122,9 +122,11 @@ class Scene3_1(ThreeDScene):
         self.add_fixed_in_frame_mobjects(pCordenadas,Rx)
         self.play(FadeIn(pCordenadas),FadeIn(Rx))
         #Rotacion en eje x
+        self.stop_ambient_camera_rotation()
+        self.wait()
         self.play(Rotate(Punto, angle=2 * PI, axis=X_AXIS, about_point=ORIGIN))
         self.wait()
-
+        
         ##Rotacion en eje y
         Ry.move_to(Rx.get_center())
         Ry.set_opacity(0)
@@ -156,6 +158,7 @@ class Scene3_1(ThreeDScene):
         self.add_fixed_in_frame_mobjects(textoCordenadas)
         pCordenadas.remove_updater(update_text)
         # -------------------------------Rotaciones con cubo
+        self.wait(2)
         self.play(
             ReplacementTransform(Punto, Cubo),
             Uncreate(pCordenadas),

@@ -84,7 +84,7 @@ class Scene2(ThreeDScene):
 
         # cordenadas
         p = MathTex(r"p=(x_1,y_1,z_1)").to_edge(UP + RIGHT).shift([-1, 0, 0])
-        p.add_updater(update_text)
+        
         CircInt.add_updater(mov_joystick)
         Cubo.add_updater(mov_personaje)
 
@@ -98,8 +98,30 @@ class Scene2(ThreeDScene):
         # animaciones
         Cubo.save_state()
         Joystick.save_state()
+       
+        self.wait()
+         ##-----------------------------Calculo de angulo---------------------------#
+
+        self.add_fixed_in_frame_mobjects(f1)
+        self.play(Write(f1))
+
+        self.add_fixed_in_frame_mobjects(f2)
+
+        self.play(Write(f2))
+        self.wait()
+
+        self.add_fixed_in_frame_mobjects(f3)
+        self.play(Write(f3))
+        self.wait() 
+        self.add_fixed_in_frame_mobjects(f4)
+        f4.set_opacity(0)
+        self.play(ReplacementTransform(f3, f4), f4.animate.set_opacity(1))
+        self.wait(0.5)
+        self.play(Uncreate(f4),Uncreate(f3),Uncreate(f2),Uncreate(f1))
         self.add_fixed_in_frame_mobjects(p)
-        
+        self.play(Write(p))
+        self.wait(1)
+        p.add_updater(update_text)
         # # para x=2.598
         # #y=1.5
         angulo.set_value(PI / 6)
@@ -108,26 +130,13 @@ class Scene2(ThreeDScene):
         self.wait()
         magnitud.set_value(0)
         p.remove_updater(update_text)
-        self.play(Restore(Cubo),Restore(Joystick),Uncreate(p))
-    
-        ##-----------------------------Calculo de angulo---------------------------#
+        self.play(Cubo.animate.move_to([2,2,0]),Restore(Joystick),Uncreate(p))
+        
 
-        self.add_fixed_in_frame_mobjects(f1)
-        self.play(Write(f1))
-
-        self.add_fixed_in_frame_mobjects(f2)
-
-        self.play(Write(f2))
-
-        self.add_fixed_in_frame_mobjects(f3)
-
-        self.play(Write(f3))
-        self.add_fixed_in_frame_mobjects(f4)
-        f4.set_opacity(0)
-        self.play(ReplacementTransform(f3, f4), f4.animate.set_opacity(1))
-        self.play(Uncreate(f4),Uncreate(f3),Uncreate(f2),Uncreate(f1))
+       
         # Mostrar posicion 
         self.move_camera(phi=0, theta=-PI/2, frame_center=Ejes, zoom=1)
+        self.play(Cubo.animate.scale(0.5))
         
         
         self.wait()
