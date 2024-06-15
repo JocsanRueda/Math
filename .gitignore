@@ -7,6 +7,7 @@
 *.ogg
 *.aup3
 *.aup3-wal
+*.txt
 
 # Ignorar carpetas generadas
 **/media/
