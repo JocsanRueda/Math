@@ -131,29 +131,29 @@ class Scene2_1(MovingCameraScene):
 
         # ------------------------------------------------Texto matematico----------------------------------------------------#
         f1 = (
-            MathTex(r"\sin(\theta_1)=\frac{y_1-y_0}{L}")
+            MathTex(r"\sin(\theta_1)=\frac{y_1-y_0}{h}")
             .move_to(UP * 5 + RIGHT * 7.2)
             .scale(0.8)
         )
-        f2 = MathTex(r"\cos(\theta_1)=\frac{x_1-x_0}{L}").next_to(f1, DOWN).scale(0.8)
+        f2 = MathTex(r"\cos(\theta_1)=\frac{x_1-x_0}{h}").next_to(f1, DOWN).scale(0.8)
         f3 = (
-            MathTex(r"x_1", "=", r"\cos(\theta_1)", "L", "+", "x_0")
+            MathTex(r"x_1", "=", r"\cos(\theta_1)", "h", "+", "x_0")
             .scale(0.8)
             .move_to(f1.get_center())
         )
         f4 = (
-            MathTex(r"y_1", "=", r"\sin(\theta_1)", "L", "+", "y_0")
+            MathTex(r"y_1", "=", r"\sin(\theta_1)", "h", "+", "y_0")
             .scale(0.8)
             .move_to(f2.get_center())
         )
 
         f5 = (
-            MathTex(r"x_n", "=", r"\cos(\theta_n)", "L", "+", "x_{n-1}")
+            MathTex(r"x_n", "=", r"\cos(\theta_n)", "h", "+", "x_{n-1}")
             .scale(0.8)
             .move_to(f1.get_center())
         )
         f6 = (
-            MathTex(r"y_n", "=", r"\sin(\theta_n)", "L", "+", "y_{n-1}")
+            MathTex(r"y_n", "=", r"\sin(\theta_n)", "h", "+", "y_{n-1}")
             .scale(0.8)
             .move_to(f2.get_center())
         )

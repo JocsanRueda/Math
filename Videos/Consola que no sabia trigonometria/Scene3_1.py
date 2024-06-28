@@ -164,11 +164,12 @@ class Scene3_1(ThreeDScene):
             Uncreate(pCordenadas),
             textoCordenadas.animate.set_opacity(1),
         )
+        
         textoCordenadas.add_updater(update_cordenadas)
 
         Rx.set_opacity(0)
         self.add_fixed_in_frame_mobjects(Rx)
-
+        self.wait()
         self.play(
             Rotate(Cubo, angle=2 * PI, axis=X_AXIS, about_point=ORIGIN),
             ReplacementTransform(Rz, Rx),
