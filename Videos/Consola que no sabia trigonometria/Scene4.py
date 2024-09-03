@@ -5,7 +5,7 @@ import numpy
 # Creamos figuras y se seccionan con plano
 
 
-class Scene3(ZoomedScene):
+class Scene4(ZoomedScene):
     
     
     # contributed by TheoremofBeethoven, www.youtube.com/c/TheoremofBeethoven

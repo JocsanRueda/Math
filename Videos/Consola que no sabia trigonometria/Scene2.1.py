@@ -7,10 +7,10 @@ import numpy
 
 class Scene2_1(MovingCameraScene):
     def construct(self):
-        
-        #delta time
-        delta_time=1/int(self.camera.frame_rate)
-     
+
+        # delta time
+        delta_time = 1 / int(self.camera.frame_rate)
+
         # cubo como personaje
         Cubo = Square(side_length=1, fill_opacity=1, fill_color=YELLOW, stroke_width=3)
         Cubo.set_stroke(color=GRAY)
@@ -103,8 +103,8 @@ class Scene2_1(MovingCameraScene):
         def mov_personaje(obj):
 
             if magnitud.get_value() > 0:
-                x = math.cos(angulo.get_value()) * (magnitud.get_value())*delta_time
-                y = math.sin(angulo.get_value()) * (magnitud.get_value())*delta_time
+                x = math.cos(angulo.get_value()) * (magnitud.get_value()) * delta_time
+                y = math.sin(angulo.get_value()) * (magnitud.get_value()) * delta_time
                 Cubo.shift([x, y, 0])
 
         def updater_triangulo(obj):
@@ -218,7 +218,7 @@ class Scene2_1(MovingCameraScene):
         self.wait()
         self.play(Write(x1), Write(y1))
         self.play(Write(f1), Write(f2))
-        
+
         self.wait()
         self.play(TransformMatchingTex(f1, f3))
         self.play(TransformMatchingTex(f2, f4))

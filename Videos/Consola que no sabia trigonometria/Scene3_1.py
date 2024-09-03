@@ -6,6 +6,28 @@ import numpy
 
 
 class Scene3_1(ThreeDScene):
+    def getRx(self):
+        tRx = r"R_x(\theta)=\begin{bmatrix} 1 & 0 & 0\\ 0 & \cos(\theta) & -\sin(\theta) \\ 0 & \sin(\theta) & \cos(\theta) \end{bmatrix}"
+
+        Rx = MathTex(tRx, font_size=30).to_edge(UR)
+
+        return Rx
+
+    def getRy(self):
+
+        tRy = r"R_y(\theta)=\begin{bmatrix} \cos(\theta) & 0 & \sin(\theta) \\ 0 & 1 & 0 \\  -\sin(\theta) & 0 & \cos(\theta) \end{bmatrix}"
+
+        Ry = MathTex(tRy, font_size=30).to_edge(UR)
+
+        return Ry
+
+    def getRz(self):
+
+        tRz = r"R_z(\theta)=\begin{bmatrix} \cos(\theta) & -\sin(\theta) & 0 \\ \sin(\theta)   & \cos(\theta)  & 0 \\  0 & 0 & 1 \end{bmatrix}"
+
+        Rz = MathTex(tRz, font_size=30).to_edge(UR)
+        return Rz
+
     def construct(self):
 
         self.set_camera_orientation(phi=60 * DEGREES, theta=-70 * DEGREES)
@@ -24,18 +46,11 @@ class Scene3_1(ThreeDScene):
         estelaPunto = TracedPath(
             Punto.get_center, dissipating_time=0.6, stroke_opacity=[0, 1]
         )
-       
 
         # -------------------matrices de rotacion
-        tRx = r"R_x(\theta)=\begin{bmatrix} 1 & 0 & 0\\ 0 & \cos(\theta) & -\sin(\theta) \\ 0 & \sin(\theta) & \cos(\theta) \end{bmatrix}"
-
-        tRy = r"R_y(\theta)=\begin{bmatrix} \cos(\theta) & 0 & \sin(\theta) \\ 0 & 1 & 0 \\  -\sin(\theta) & 0 & \cos(\theta) \end{bmatrix}"
-
-        tRz = r"R_z(\theta)=\begin{bmatrix} \cos(\theta) & -\sin(\theta) & 0 \\ \sin(\theta)   & \cos(\theta)  & 0 \\  0 & 0 & 1 \end{bmatrix}"
-
-        Rx = MathTex(tRx, font_size=30).to_edge(UR)
-        Ry = MathTex(tRy, font_size=30).next_to(Rx, DOWN, buff=0.7)
-        Rz = MathTex(tRz, font_size=30).next_to(Ry, DOWN, buff=0.7)
+        Rx = self.getRx()
+        Ry = self.getRy()
+        Rz = self.getRz()
 
         def update_text(obj):
             (x, y, z) = Punto.get_center()
@@ -111,22 +126,22 @@ class Scene3_1(ThreeDScene):
         # -------------Animacion inicial------------------------------------
         # self.set_camera_orientation(phi=0, theta=3*PI/2)
         self.move_camera(phi=60 * DEGREES, theta=-70 * DEGREES)
-        self.begin_ambient_camera_rotation(rate=-PI/20, about="theta")
-        
+        self.begin_ambient_camera_rotation(rate=-PI / 20, about="theta")
+
         self.wait()
         self.add(estelaPunto)
         pCordenadas.add_updater(update_text)
         self.play(Create(Punto))
         self.wait()
-        
-        self.add_fixed_in_frame_mobjects(pCordenadas,Rx)
-        self.play(FadeIn(pCordenadas),FadeIn(Rx))
-        #Rotacion en eje x
+
+        self.add_fixed_in_frame_mobjects(pCordenadas, Rx)
+        self.play(FadeIn(pCordenadas), FadeIn(Rx))
+        # Rotacion en eje x
         self.stop_ambient_camera_rotation()
         self.wait()
         self.play(Rotate(Punto, angle=2 * PI, axis=X_AXIS, about_point=ORIGIN))
         self.wait()
-        
+
         ##Rotacion en eje y
         Ry.move_to(Rx.get_center())
         Ry.set_opacity(0)
@@ -164,23 +179,30 @@ class Scene3_1(ThreeDScene):
             Uncreate(pCordenadas),
             textoCordenadas.animate.set_opacity(1),
         )
-        
-        textoCordenadas.add_updater(update_cordenadas)
 
+        textoCordenadas.add_updater(update_cordenadas)
+        del Rx
+        Rx = self.getRx()
         Rx.set_opacity(0)
         self.add_fixed_in_frame_mobjects(Rx)
         self.wait()
         self.play(
-            Rotate(Cubo, angle=2 * PI, axis=X_AXIS, about_point=ORIGIN),
             ReplacementTransform(Rz, Rx),
             Rx.animate.set_opacity(1),
-            Uncreate(pCordenadas)
+            Uncreate(pCordenadas),
         )
+        self.play(
+            Rotate(Cubo, angle=2 * PI, axis=X_AXIS, about_point=ORIGIN),
+        )
+        del Ry
+        Ry = self.getRy()
         Ry.move_to(Rx.get_center())
         Ry.set_opacity(0)
         self.add_fixed_in_frame_mobjects(Ry)
         self.play(ReplacementTransform(Rx, Ry), Ry.animate.set_opacity(1))
         self.play(Rotate(Cubo, angle=2 * PI, axis=Y_AXIS, about_point=ORIGIN))
+        del Rz
+        Rz = self.getRz()
         Rz.set_opacity(0)
         Rz.move_to(Ry.get_center())
         self.add_fixed_in_frame_mobjects(Rz)
@@ -211,14 +233,16 @@ class Scene3_1(ThreeDScene):
         self.remove(flecha, f1, centro)
 
         # rotaciones
+        del Rx
+        Rx = self.getRx()
         Rx.set_opacity(0)
         self.add_fixed_in_frame_mobjects(Rx)
-
+        self.play(Rx.animate.set_opacity(1))
         self.play(
-            Rotate(Cubo, angle=2 * PI, axis=X_AXIS, about_point=Cubo.get_center()),
-
-            Rx.animate.set_opacity(1),
+            Rotate(Cubo, angle=2 * PI, axis=X_AXIS, about_point=Cubo.get_center())
         )
+        del Ry
+        Ry = self.getRy()
         Ry.move_to(Rx.get_center())
         Ry.set_opacity(0)
         self.add_fixed_in_frame_mobjects(Ry)
@@ -227,6 +251,8 @@ class Scene3_1(ThreeDScene):
         self.play(
             Rotate(Cubo, angle=2 * PI, axis=Y_AXIS, about_point=Cubo.get_center())
         )
+        del Rz
+        Rz = self.getRz()
         Rz.set_opacity(0)
         Rz.move_to(Ry.get_center())
         self.add_fixed_in_frame_mobjects(Rz)
