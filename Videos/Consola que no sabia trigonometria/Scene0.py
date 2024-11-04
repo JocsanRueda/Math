@@ -1,8 +1,7 @@
 from manim import *
 
 # Creamos figuras y se seccionan con plano
-
-
+#xgdsfsdf
 class Scene0(ThreeDScene):
     def construct(self):
 
